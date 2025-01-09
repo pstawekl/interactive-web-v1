@@ -1,0 +1,107 @@
+import * as React from 'react'
+import { Link, Outlet, createRootRoute } from '@tanstack/react-router'
+import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import { Facebook, Instagram, Menu, X } from 'lucide-react'
+import Logo from '../assets/logo.png'
+
+export const Route = createRootRoute({
+  component: RootComponent,
+})
+
+function RootComponent() {
+  const [isScrolled, setIsScrolled] = React.useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > (window.innerHeight*0.2)) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    <>
+      <div className={`p-2 transition duration-300 items-center grid grid-cols-2 lg:grid-cols-3 gap-2 text-lg w-full justify-between z-10 ${isScrolled ? 'fixed z-10 bg-[#090d14] lg:py-2 lg:px-2 lg:w-[70vw] left-1/2 transform -translate-x-1/2 rounded-xl' : ''}`}>
+        <a href="#">
+          <img className={`transition duration-300 hover:filter hover:sepia ${isScrolled ? 'rounded' : ''}`} src={Logo} alt="Interactive logo" width="30" />
+        </a>
+        
+        {/* Desktop Menu */}
+        <div className='hidden lg:flex flex-row gap-2 justify-center text-xl font-light'>
+          <Link
+            to="/"
+            className='hover:cursor-pointer hover:text-white'
+            activeProps={{
+              className: 'font-bold',
+            }}
+            activeOptions={{ exact: true }}
+          >
+            Home
+          </Link>
+          <Link
+            to="/about"
+            className='hover:cursor-pointer hover:text-white'
+            activeProps={{
+              className: 'font-bold',
+            }}
+          >
+            Strony WWW
+          </Link>
+        </div>
+        
+        <div className='hidden lg:flex flex-row gap-2 justify-end'>
+          <a href='https://www.facebook.com/interactivenetpl' target='_blank'><Facebook className='transition duration-300 hover:text-blue-500' size={30} /></a>
+          <a href='https://www.instagram.com/interactivenetpl' target='_blank'><Instagram className='transition duration-300 hover:text-blue-500' size={30} /></a>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button 
+          className="lg:hidden justify-self-end"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X size={30} /> : <Menu size={30} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 bg-[#090d14] z-50 flex flex-col items-center justify-center space-y-8">
+          <button 
+            className="absolute top-4 right-4 text-white hover:text-gray-300"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <X size={40} />
+          </button>
+          <Link
+            to="/"
+            className='text-2xl hover:text-white'
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Home
+          </Link>
+          <Link
+            to="/about"
+            className='text-2xl hover:text-white'
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Strony WWW
+          </Link>
+          <div className='flex flex-row gap-4 mt-8'>
+            <a href='https://www.facebook.com/interactivenetpl' target='_blank'><Facebook className='transition duration-300 hover:text-blue-500' size={40} /></a>
+            <a href='https://www.instagram.com/interactivenetpl' target='_blank'><Instagram className='transition duration-300 hover:text-blue-500' size={40} /></a>
+          </div>
+        </div>
+      )}
+
+      <hr />
+      <Outlet />
+      <TanStackRouterDevtools position="bottom-right" />
+    </>
+  )
+}
