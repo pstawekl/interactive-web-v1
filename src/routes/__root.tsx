@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link, Outlet, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
-import { Facebook, Instagram, Menu, X } from 'lucide-react'
+import { Facebook, Github, Instagram, Linkedin, Mail, Menu, Phone, X } from 'lucide-react'
 import Logo from '../assets/logo.png'
 
 export const Route = createRootRoute({
@@ -14,7 +14,7 @@ function RootComponent() {
 
   React.useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > (window.innerHeight*0.2)) {
+      if (window.scrollY > (window.innerHeight * 0.2)) {
         setIsScrolled(true)
       } else {
         setIsScrolled(false)
@@ -31,37 +31,62 @@ function RootComponent() {
         <a href="#">
           <img className={`transition duration-300 hover:filter hover:sepia ${isScrolled ? 'rounded' : ''}`} src={Logo} alt="Interactive logo" width="30" />
         </a>
-        
+
         {/* Desktop Menu */}
-        <div className='hidden lg:flex flex-row gap-2 justify-center text-xl font-light'>
+        <div className='hidden lg:flex flex-row gap-2 justify-center uppercase text-lg font-light'>
           <Link
             to="/"
-            className='hover:cursor-pointer hover:text-white'
+            className='hover:cursor-pointer hover:text-gray-600'
             activeProps={{
-              className: 'font-bold',
+              className: 'text-gray-600 text-xl transition duration-300 hover:text-gray-100',
             }}
             activeOptions={{ exact: true }}
           >
             Home
           </Link>
           <Link
-            to="/about"
-            className='hover:cursor-pointer hover:text-white'
+            to="/www"
+            className='hover:cursor-pointer hover:text-gray-600'
             activeProps={{
-              className: 'font-bold',
+              className: 'text-gray-600 text-xl transition duration-300 hover:text-gray-100',
             }}
           >
             Strony WWW
           </Link>
+          <Link
+            to="/contact"
+            className='hover:cursor-pointer hover:text-gray-600'
+            activeProps={{
+              className: 'text-gray-600 text-xl transition duration-300 hover:text-gray-100',
+            }}
+          >
+            Kontakt
+          </Link>
         </div>
-        
+
         <div className='hidden lg:flex flex-row gap-2 justify-end'>
-          <a href='https://www.facebook.com/interactivenetpl' target='_blank'><Facebook className='transition duration-300 hover:text-blue-500' size={30} /></a>
-          <a href='https://www.instagram.com/interactivenetpl' target='_blank'><Instagram className='transition duration-300 hover:text-blue-500' size={30} /></a>
+          <a href="https://facebook.com/interactivenetpl" target="_blank" rel="noopener noreferrer">
+            <Facebook className="w-6 h-6 hover:text-gray-600 transition-colors" />
+          </a>
+          <a href="https://instagram.com/interactivenetpl" target="_blank" rel="noopener noreferrer">
+            <Instagram className="w-6 h-6 hover:text-gray-600 transition-colors" />
+          </a>
+          <a href="https://linkedin.com/in/jakub-stawski-dev" target="_blank" rel="noopener noreferrer">
+            <Linkedin className="w-6 h-6 hover:text-gray-600 transition-colors" />
+          </a>
+          <a href="https://github.com/pstawekl" target="_blank" rel="noopener noreferrer">
+            <Github className="w-6 h-6 hover:text-gray-600 transition-colors" />
+          </a>
+          <a href="tel:+48518275470">
+            <Phone className="w-6 h-6 hover:text-gray-600 transition-colors" />
+          </a>
+          <a href="mailto:jakub.stawski@interactive.net.pl">
+            <Mail className="w-6 h-6 hover:text-gray-600 transition-colors" />
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
-        <button 
+        <button
           className="lg:hidden justify-self-end"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
@@ -72,7 +97,7 @@ function RootComponent() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 bg-[#090d14] z-50 flex flex-col items-center justify-center space-y-8">
-          <button 
+          <button
             className="absolute top-4 right-4 text-white hover:text-gray-300"
             onClick={() => setIsMobileMenuOpen(false)}
           >
@@ -86,11 +111,18 @@ function RootComponent() {
             Home
           </Link>
           <Link
-            to="/about"
+            to="/www"
             className='text-2xl hover:text-white'
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Strony WWW
+          </Link>
+          <Link
+            to="/contact"
+            className='text-2xl hover:text-white'
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Kontakt
           </Link>
           <div className='flex flex-row gap-4 mt-8'>
             <a href='https://www.facebook.com/interactivenetpl' target='_blank'><Facebook className='transition duration-300 hover:text-blue-500' size={40} /></a>
@@ -101,7 +133,11 @@ function RootComponent() {
 
       <hr />
       <Outlet />
-      <TanStackRouterDevtools position="bottom-right" />
+      {
+        import.meta.env.DEV && (
+          <TanStackRouterDevtools position="bottom-right" />
+        )
+      }
     </>
   )
 }

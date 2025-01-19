@@ -35,7 +35,7 @@ const SlideUp = () => {
             {isVisible && (
                 <button
                     onClick={scrollToTop}
-                    className="fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg transition-all duration-300 hover:bg-blue-600 hover:shadow-xl"
+                    className="fixed bottom-24 right-5 z-50 flex h-12 w-12 items-center justify-center rounded shadow-lg bg-white text-blue-500 shadow-lg transition-all duration-300 hover:bg-blue-600 hover:shadow-xl"
                     aria-label="Scroll to top"
                 >
                     <IoIosArrowUp className="h-6 w-6" />
