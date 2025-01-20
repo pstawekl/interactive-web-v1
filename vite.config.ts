@@ -25,5 +25,8 @@ export default defineConfig({
         assetFileNames: '[name].[ext]'
       }
     }
+  },
+  server: {
+    historyApiFallback: true
   }
 });

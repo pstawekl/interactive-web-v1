@@ -5,9 +5,15 @@ import { Facebook, Github, Instagram, Linkedin, Mail, Menu, Phone, X } from 'luc
 import Logo from '../assets/logo.png'
 import LanguagePicker from '@/components/language-picker'
 import { useTranslation } from '@/hooks/useTranslation'
+import { NotFound } from '@/components/not-found'
 
 export const Route = createRootRoute({
-  component: RootComponent,
+  component: () => {
+    return RootComponent();
+  },
+  notFoundComponent: () => {
+    return <NotFound />
+  }
 })
 
 function RootComponent() {
@@ -118,9 +124,9 @@ function RootComponent() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-[#090d14] z-50 flex flex-col items-center justify-center space-y-8">
+        <div className="fixed inset-0 bg-white dark:bg-[#090d14] z-50 flex flex-col items-center justify-center space-y-8">
           <button
-            className="absolute top-4 right-4 text-white hover:text-gray-300"
+            className="absolute top-4 right-4 dark:text-white hover:text-gray-300"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <X size={40} />

@@ -11,7 +11,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 export default function Index() {
     const { t } = useTranslation();
 
-    return <div className="gap-8">
+    return <div>
         <Hero />
         <Headings />
         <CallToAction />

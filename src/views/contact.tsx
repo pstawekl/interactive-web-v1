@@ -130,7 +130,7 @@ const Contact = () => {
         });
     };
 
-    const position: LatLngExpression = [51.60182, 18.94263];
+    const position: LatLngExpression = [51.60172, 18.94248];
 
     return (
         <div className="w-full">
@@ -144,12 +144,12 @@ const Contact = () => {
 
             <div className='w-full mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-4 items-center justify-items-center mt-8 mb-32 [&>*+*]:lg:border-l'>
                 <div className="hidden lg:block p-12 w-full overflow-hidden">
-                    <div className="h-[400px] w-full relative">
+                    <div className="h-[400px] w-full flex justify-end">
                         <MapContainer
                             className='z-0 rounded-2xl'
                             center={position}
                             zoom={15}
-                            style={{ height: '400px', width: '100%' }}
+                            style={{ height: '400px', width: '400px' }}
                             scrollWheelZoom={false}
                         >
                             <TileLayer

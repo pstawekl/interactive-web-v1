@@ -23,15 +23,15 @@ function HeadingDescription() {
     const { t } = useTranslation();
     return <section id="description" className="bg-white dark:bg-gray-900">
         <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-            <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+            <div className="font-light text-center lg:text-left text-gray-500 sm:text-lg dark:text-gray-400">
                 <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{t('indexHeadingTitle')}</h2>
                 <p className="mb-4">{t('indexHeadingDescription')}</p>
                 <p>{t('indexHeadingDescription2')}</p>
                 <a href="https://github.com/pstawekl" target="_blank">
-                    <Button className="mt-4" variant={'interactive'}>{t('checkProjects')}</Button>
+                    <Button className="mt-4 mb-4" variant={'interactive'}>{t('checkProjects')}</Button>
                 </a>
             </div>
-            <div className="grid grid-cols-2 gap-4 mt-8">
+            <div className="grid grid-cols-2 gap-4">
                 <img className="w-full rounded-lg" src="https://media.istockphoto.com/id/910422618/photo/software-developer.jpg?s=612x612&w=0&k=20&c=SduSASqZPraf18Whb6p1Ki1tTS5QWsgPxiCbLrHYzkc=" alt="office content 1" />
                 <img className="mt-4 w-full lg:mt-10 rounded-lg" src="https://img.freepik.com/free-photo/data-server-racks-hub-room-with-big-data-computer-center-blue-interior-hosting-storage-hardware_90220-1033.jpg?semt=ais_hybrid" alt="office content 2" />
             </div>

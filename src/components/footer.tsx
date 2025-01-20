@@ -1,6 +1,7 @@
 import { Facebook, GitBranch, Github, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 import LogoHorizontal from '../assets/logo-horizontal.png';
 import { useTranslation } from '@/hooks/useTranslation';
+import { Link } from '@tanstack/react-router';
 
 export default function Footer() {
     const { t } = useTranslation();
@@ -40,30 +41,30 @@ export default function Footer() {
                     <div className="flex flex-row lg:flex-col justify-center items-end text-center lg:justify-end lg:text-left">
                         <nav className="flex flex-wrap flex-col gap-6">
                             <h2 className="text-lg font-bold">{t('menu')}</h2>
-                            <a
-                                href="/"
+                            <Link
+                                to="/"
                                 className="hover:text-gray-300 transition-colors"
                             >
                                 {t('indexViewMap1')}
-                            </a>
-                            <a
-                                href="/about"
+                            </Link>
+                            <Link
+                                to="/www"
                                 className="hover:text-gray-300 transition-colors"
                             >
                                 {t('www')}
-                            </a>
-                            <a
-                                href="/ecommerce"
+                            </Link>
+                            <Link
+                                to="/ecommerce"
                                 className="hover:text-gray-300 transition-colors"
                             >
                                 {t('onlineStore')}
-                            </a>
-                            <a
-                                href="/contact"
+                            </Link>
+                            <Link
+                                to="/contact"
                                 className="hover:text-gray-300 transition-colors"
                             >
                                 {t('contact')}
-                            </a>
+                            </Link>
                         </nav>
                     </div>
                 </div>

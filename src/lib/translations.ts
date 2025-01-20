@@ -146,7 +146,10 @@ export const translations = {
             "noLinks": "Wiadomość nie może zawierać linków!",
             "recaptchaFailed": "Weryfikacja nie powiodła się. Spróbuj ponownie."
         },
-        "pickLanguage": "Wybierz język"
+        "pickLanguage": "Wybierz język",
+        "pageNotFound": "Nie znaleziono strony",
+        "pageNotFoundDescription": "Strona na którą próbowałeś wejść najprawdopodobniej nie istnieje.",
+        "backToHome": "Wróć na stronę główną"
     },
     "en": {
         "html5error": "Your browser does not support HTML5 video.",
@@ -296,6 +299,9 @@ export const translations = {
             "noLinks": "Message cannot contain links!",
             "recaptchaFailed": "Verification failed. Please try again."
         },
-        "pickLanguage": "Pick language"
+        "pickLanguage": "Pick language",
+        "pageNotFound": "Page Not Found",
+        "pageNotFoundDescription": "The page you are looking for doesn't exist or has been moved.",
+        "backToHome": "Back to Home"
     }
 };
