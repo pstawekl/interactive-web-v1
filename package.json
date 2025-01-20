@@ -10,7 +10,7 @@
     "lint:fix": "eslint --fix",
     "format": "prettier --write .",
     "preview": "vite preview",
-    "clean": "del-cli \"src/**/*.js\""
+    "clean": "del-cli \"src/**/*.js\"",
     "install": "pnpm install"
   },
   "devDependencies": {
