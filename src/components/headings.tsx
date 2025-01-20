@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from "react";
+import { ReactElement } from "react";
 import { Button } from './ui/button';
 import { TbBook2, TbBrandReact, TbWorldWww } from "react-icons/tb";
 import { useNavigate } from '@tanstack/react-router';
@@ -8,6 +8,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { useTranslation } from "@/hooks/useTranslation";
 
 export function Headings() {
     return (
@@ -19,14 +20,15 @@ export function Headings() {
 }
 
 function HeadingDescription() {
+    const { t } = useTranslation();
     return <section id="description" className="bg-white dark:bg-gray-900">
         <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
             <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Proste rozwiązania na skomplikowane problemy</h2>
-                <p className="mb-4">Łączymy młodość z doświadczeniem. Dzięki temu dostarczamy innowacyjne rozwiązania. Nasze oprogramowania korzystają z najnowszych technologii. Dostarczamy bezpieczne i stabilne aplikacje, które spełnią wszelkie wymogi.</p>
-                <p>Pracowaliśmy już nad rozwojem infrastruktury krytycznej kraju, a także nad jednym z najbardziej popularnych systemów ERP w Europie. Jesteśmy producentem godnym zaufania.</p>
+                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{t('indexHeadingTitle')}</h2>
+                <p className="mb-4">{t('indexHeadingDescription')}</p>
+                <p>{t('indexHeadingDescription2')}</p>
                 <a href="https://github.com/pstawekl" target="_blank">
-                    <Button className="mt-4" variant={'interactive'}>Sprawdź nasze projekty</Button>
+                    <Button className="mt-4" variant={'interactive'}>{t('checkProjects')}</Button>
                 </a>
             </div>
             <div className="grid grid-cols-2 gap-4 mt-8">
@@ -38,32 +40,35 @@ function HeadingDescription() {
 }
 
 function HeadingSelections() {
+    const { t } = useTranslation();
     return <section id="offer" className='bg-white dark:bg-gray-900 m-8'>
         <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-1 lg:py-16 lg:px-6">
-            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Czego szukasz?</h2>
+            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{t('indexHeadingSelectionsTitle')}</h2>
             <div className="gap-10 flex flex-col lg:flex-row items-center justify-center">
                 <SelectionPick
-                    title='Sklep internetowy'
-                    description='Nasze sklepy internetowe pomogą Ci zwielokrotnić sprzedaż produktów. Są proste w obsłudze. Bez problemu możesz rozszerzyć asortyment, zaktualizować opis czy zmienić cenę.'
+                    title={t('onlineStore')}
+                    description={t('indexHeadingSelections1Description')}
                     price={1699}
                     side="right"
                     icon={<TbWorldWww size={50} />}
+                    link={'/ecommerce'}
                 />
                 <SelectionPick
                     width="w-90"
-                    title={'Aplikacje internetowe'}
-                    description='Nasze aplikacje internetowe są skrojone pod oczekiwania klienta. Niezależnie od tego jakiej aplikacji potrzebujesz, stworzymy ją. Posiadamy wieloletnie doświadczenie w tworzeniu aplikacji z zakresu infrastruktury krytycznej czy systemów ERP. Dzięki temu możemy stworzyć dowolną aplikację, która pomoże w rozwoju Twojej firmy.'
+                    title={t('webApplications')}
+                    description={t('indexHeadingSelections2Description')}
                     side='center'
                     price={999}
                     icon={<TbBrandReact size={50} />}
                     link={'/www'}
                 />
                 <SelectionPick
-                    title={'Szkolenia'}
-                    description='Przeprowadzamy również szkolenia z zakresu bezpieczeństwa w IT, podstaw programowania, a także wykorzystania najnowszych rozwiązań informatycznych w Twojej firmie.'
+                    title={t('courses')}
+                    description={t('indexHeadingSelections3Description')}
                     side='left'
                     price={999}
                     icon={<TbBook2 size={50} />}
+                    link={"/courses"}
                 />
             </div>
         </div>
@@ -71,6 +76,7 @@ function HeadingSelections() {
 }
 
 function SelectionPick({ width, title, description, price, side, icon, link, tooltip }: { width?: string, title: string, description: string, price: number, side: 'left' | 'center' | 'right', icon?: ReactElement, link?: string, tooltip?: string }) {
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     return (
@@ -83,7 +89,7 @@ function SelectionPick({ width, title, description, price, side, icon, link, too
 
             <div className="transition-opacity duration-300 selection-pick-hover"></div>
             <h3 className={`text-xl tracking-tight font-extrabold text-gray-900 dark:text-white`}>{title}</h3>
-            {icon && <div className={"flex flex-row text-white justify-center " + ` ${side == "right" ? "lg:justify-end" : side == "left" ? "lg:justify-start" : "lg:justify-center"}`}>{icon}</div>}
+            {icon && <div className={"flex flex-row text-white-900 justify-center " + ` ${side == "right" ? "lg:justify-end" : side == "left" ? "lg:justify-start" : "lg:justify-center"}`}>{icon}</div>}
             <span className='text-xl font-bold'>od {price} zł</span>
             <p>{description}</p>
             {!link &&
@@ -100,7 +106,7 @@ function SelectionPick({ width, title, description, price, side, icon, link, too
             }
             {
                 link &&
-                <Button variant={'interactive'} onClick={() => navigate({ to: link })}>Sprawdź</Button>
+                <Button variant={'interactive'} onClick={() => navigate({ to: link })}>{t('check')}</Button>
             }
         </div>
     );

@@ -8,7 +8,7 @@ export const Route = createFileRoute('/www')({
 
 function WwwComponent() {
   return (
-    <div className="p-2">
+    <div>
       <WebServicesView />
     </div>
   )

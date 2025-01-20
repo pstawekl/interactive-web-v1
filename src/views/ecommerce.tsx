@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Globe, Gauge, Smartphone, Paintbrush, ArrowUp, ArrowDown } from 'lucide-react';
+import { ShoppingCart, Gauge, Shield, CreditCard, ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import EmailForm, { EmailFormProps } from '@/components/email';
+import EmailForm from '@/components/email';
 import Footer from '@/components/footer';
 import SlideUp from '@/components/slide-up';
 import { ViewMap } from '@/components/view-map';
@@ -9,11 +9,10 @@ import { PricingCardSkeleton } from '@/components/pricing-card-skeleton';
 import { RealizedProject } from '@/components/realized-project';
 import { useTranslation } from '@/hooks/useTranslation';
 
-const WebServicesView: React.FC = () => {
+const EcommerceView: React.FC = () => {
     const { t } = useTranslation();
 
     useEffect(() => {
-        // Dodaj skrypt reCAPTCHA v3
         const script = document.createElement('script');
         script.src = `https://www.google.com/recaptcha/api.js?render=${import.meta.env.VITE_RECAPTCHA_SITE_KEY}`;
         document.head.appendChild(script);
@@ -35,24 +34,24 @@ const WebServicesView: React.FC = () => {
 
     const services = [
         {
-            icon: <Globe className="w-8 h-8" />,
-            title: t('websites'),
-            description: t('wwwService1')
+            icon: <ShoppingCart className="w-8 h-8" />,
+            title: t('onlineStores'),
+            description: t('ecommerceService1')
         },
         {
             icon: <Gauge className="w-8 h-8" />,
-            title: t('optimalization'),
-            description: t('wwwService2')
+            title: t('performance'),
+            description: t('ecommerceService2')
         },
         {
-            icon: <Smartphone className="w-8 h-8" />,
-            title: 'RWD',
-            description: t('wwwService3')
+            icon: <Shield className="w-8 h-8" />,
+            title: t('security'),
+            description: t('ecommerceService3')
         },
         {
-            icon: <Paintbrush className="w-8 h-8" />,
-            title: t('futureDesign'),
-            description: t('wwwService4')
+            icon: <CreditCard className="w-8 h-8" />,
+            title: t('payments'),
+            description: t('ecommerceService4')
         }
     ];
 
@@ -60,15 +59,15 @@ const WebServicesView: React.FC = () => {
         switch (type) {
             case 'basic':
                 setIsEmailFormOpen(true);
-                setEmailFormDesc(t('basicPackageEmailDesc'));
+                setEmailFormDesc(t('basicStoreEmailDesc'));
                 break;
             case 'standard':
                 setIsEmailFormOpen(true);
-                setEmailFormDesc(t('standardPackageEmailDesc'));
+                setEmailFormDesc(t('standardStoreEmailDesc'));
                 break;
             case 'premium':
                 setIsEmailFormOpen(true);
-                setEmailFormDesc(t('premiumPackageEmailDesc'));
+                setEmailFormDesc(t('premiumStoreEmailDesc'));
                 break;
             case '':
                 setIsEmailFormOpen(false);
@@ -107,31 +106,29 @@ const WebServicesView: React.FC = () => {
             <section id="home" className='px-20 lg:px-auto lg:pb-32 lg:max-w-7xl'>
                 <div className="text-center mb-16 pt-16">
                     <h1 className="text-4xl font-bold mb-4">
-                        {t('websites')}
+                        {t('onlineStores')}
                     </h1>
                     <p className="text-xl dark:text-white">
-                        {t('wwwDescription')}
+                        {t('ecommerceDescription')}
                     </p>
                 </div>
 
-                <div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-                        {services.map((service, index) => (
-                            <div key={index} className="border rounded-lg max-w-xl shadow-md h-full flex flex-col lg:hover:scale-105 transition-transform duration-300 bg-white dark:bg-gray-800">
-                                <div className="p-6 flex-grow flex flex-col items-center">
-                                    <div className="mb-4 text-primary">
-                                        {service.icon}
-                                    </div>
-                                    <h2 className="text-xl font-semibold mb-2">
-                                        {service.title}
-                                    </h2>
-                                    <p className="text-black-900 text-center">
-                                        {service.description}
-                                    </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+                    {services.map((service, index) => (
+                        <div key={index} className="border rounded-lg max-w-xl shadow-md h-full flex flex-col lg:hover:scale-105 transition-transform duration-300 bg-white dark:bg-gray-800">
+                            <div className="p-6 flex-grow flex flex-col items-center">
+                                <div className="mb-4 text-primary">
+                                    {service.icon}
                                 </div>
+                                <h2 className="text-xl font-semibold mb-2">
+                                    {service.title}
+                                </h2>
+                                <p className="dark:text-white text-center">
+                                    {service.description}
+                                </p>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
             </section>
 
@@ -140,19 +137,19 @@ const WebServicesView: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {
                         (type == 'basic' || type == '') ?
-                            <div className={"border rounded-lg p-6 shadow-md flex flex-col bg-white dark:bg-gray-800 hover:border-white " + (type == 'basic' ? " border-white" : "")}>
+                            <div className={"border rounded-lg p-6 shadow-md flex flex-col bg-white dark:bg-gray-800 hover:border-black hover:dark:border-white " + (type == 'basic' ? " border-white" : "")}>
                                 <h3 className="text-2xl font-bold text-center mb-4">Basic</h3>
                                 <div className="text-center mb-6">
-                                    <span className="text-4xl font-bold">999 zł</span>
+                                    <span className="text-4xl font-bold">2999 zł</span>
                                 </div>
                                 <ul className="space-y-4 mb-8 flex-grow">
                                     <li className="flex items-center">
                                         <span className="text-primary mr-2">✓</span>
-                                        {t('onePage')}
+                                        {t('upTo100Products')}
                                     </li>
                                     <li className="flex items-center">
                                         <span className="text-primary mr-2">✓</span>
-                                        {t('responsiveDesign')}
+                                        {t('adminPanel')}
                                     </li>
                                     <li className="flex items-center">
                                         <span className="text-primary mr-2">✓</span>
@@ -170,19 +167,19 @@ const WebServicesView: React.FC = () => {
 
                     {
                         (type == 'standard' || type == '') ?
-                            <div className={"border rounded-lg p-6 shadow-lg flex flex-col bg-primary text-black dark:text-white hover:border-white " + (type == 'standard' ? 'border-white' : '')}>
+                            <div className={"border rounded-lg p-6 shadow-lg flex flex-col bg-primary dark:text-white hover:border-black hover:dark:border-white " + (type == 'standard' ? 'border-white' : '')}>
                                 <h3 className="text-2xl font-bold text-center mb-4">Standard</h3>
                                 <div className="text-center mb-6">
-                                    <span className="text-4xl font-bold">1999 zł</span>
+                                    <span className="text-4xl font-bold">4999 zł</span>
                                 </div>
                                 <ul className="space-y-4 mb-8 flex-grow">
                                     <li className="flex items-center">
                                         <span className="mr-2">✓</span>
-                                        {t('to5SubSites')}
+                                        {t('upTo1000Products')}
                                     </li>
                                     <li className="flex items-center">
                                         <span className="mr-2">✓</span>
-                                        {t('responsiveDesign')}
+                                        {t('paymentIntegration')}
                                     </li>
                                     <li className="flex items-center">
                                         <span className="mr-2">✓</span>
@@ -190,7 +187,7 @@ const WebServicesView: React.FC = () => {
                                     </li>
                                     <li className="flex items-center">
                                         <span className="mr-2">✓</span>
-                                        {t('contactForm')}
+                                        {t('notificationSystem')}
                                     </li>
                                 </ul>
                                 <Button
@@ -205,23 +202,23 @@ const WebServicesView: React.FC = () => {
 
                     {
                         (type == 'premium' || type == '') ?
-                            <div className={"border rounded-lg p-6 shadow-md flex flex-col bg-white dark:bg-gray-800 hover:border-white " + (type == 'premium' ? 'border-white' : '')}>
+                            <div className={"border rounded-lg p-6 shadow-md flex flex-col bg-white dark:bg-gray-800 hover:border-black hover:dark:border-white " + (type == 'premium' ? 'border-white' : '')}>
                                 <h3 className="text-2xl font-bold text-center mb-4">Premium</h3>
                                 <div className="text-center mb-6">
-                                    <span className="text-4xl font-bold">4999 zł</span>
+                                    <span className="text-4xl font-bold">9999 zł</span>
                                 </div>
                                 <ul className="space-y-4 mb-8 flex-grow">
                                     <li className="flex items-center">
                                         <span className="text-primary mr-2">✓</span>
-                                        {t('unlimitedSubSites')}
+                                        {t('unlimitedProducts')}
                                     </li>
                                     <li className="flex items-center">
                                         <span className="text-primary mr-2">✓</span>
-                                        {t('adminPanel')}
+                                        {t('loyaltySystem')}
                                     </li>
                                     <li className="flex items-center">
                                         <span className="text-primary mr-2">✓</span>
-                                        {t('systemsIntegration')}
+                                        {t('erpIntegration')}
                                     </li>
                                     <li className="flex items-center">
                                         <span className="text-primary mr-2">✓</span>
@@ -238,7 +235,7 @@ const WebServicesView: React.FC = () => {
                             <PricingCardSkeleton className='hidden lg:block' />
                     }
                 </div>
-
+                
                 {
                     isEmailFormOpen && !isEmailSent &&
                     <div className='grid grid-cols-1 gap-8 mt-32 justify-items-center'>
@@ -248,68 +245,78 @@ const WebServicesView: React.FC = () => {
                         <EmailForm description={emailFormDesc} onEmailSent={handleEmailSent} />
                     </div>
                 }
-                {
-                    isEmailSent &&
+                {isEmailFormOpen && !isEmailSent && (
+                    <div className='grid grid-cols-1 gap-8 mt-32 justify-items-center'>
+                        <EmailForm description={emailFormDesc} onEmailSent={handleEmailSent} />
+                    </div>
+                )}
+                {isEmailSent && (
                     <div className='text-center mt-32 text-green-500 font-bold'>
                         {t('thankForTheMessage')}
                     </div>
-                }
-
+                )}
             </section>
 
             <section id="whyme" className="mt-24 px-20 lg:px-64 mb-20 lg:mb-32">
                 <h2 className="text-3xl font-bold text-center mb-12">{t('whyme')}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <div className="space-y-6">
-                        <h3 className="text-2xl font-semibold">{t('newTechnologies')}</h3>
+                        <h3 className="text-2xl font-semibold">{t('ecommerceTechnologies')}</h3>
                         <div className="space-y-4">
                             <div className="flex items-start gap-3">
                                 <div className="flex-shrink-0 w-6 h-6 text-primary">✓</div>
-                                <p>{t('aboutReact')}</p>
+                                <p>{t('aboutWooCommerce')}</p>
                             </div>
                             <div className="flex items-start gap-3">
                                 <div className="flex-shrink-0 w-6 h-6 text-primary">✓</div>
-                                <p>{t('aboutTypeScript')}</p>
+                                <p>{t('aboutPrestaShop')}</p>
                             </div>
                             <div className="flex items-start gap-3">
                                 <div className="flex-shrink-0 w-6 h-6 text-primary">✓</div>
-                                <p>{t('aboutTailwind')}</p>
+                                <p>{t('aboutShopify')}</p>
                             </div>
                         </div>
                     </div>
                     <div className="space-y-6">
                         <h3 className="text-2xl font-semibold">{t('realizedProjects')}</h3>
                         <div className="flex flex-col gap-4">
-                            <RealizedProject name="Rbiuro.pl" description={t('rbiuroDescription')} link='https://rbiuro.pl' />
-                            <RealizedProject name="Softlab ERP" description={t('softlabDescription')} link='https://assecobs.pl/softlab' />
-                            <RealizedProject name="Apartament Danusia" description={t('danusiaDescription')} link='https://apartamentdanusia.pl/' />
-                            <RealizedProject name="Oj Lala" description={t('ojlalaDescription')} />
-                            <RealizedProject name="T4RP" description={t('t4rpDescription')} />
+                            <RealizedProject
+                                name="K9 Wear" 
+                                description={t('k9wearDescription')} 
+                                link="https://k9wear.pl"
+                            />
+                            <RealizedProject
+                                name="E-butik" 
+                                description={t('ebutikDescription')} 
+                            />
+                            <RealizedProject
+                                name="Kosmetyki naturalne" 
+                                description={t('naturalCosmeticsDescription')} 
+                            />
                         </div>
                     </div>
-
                 </div>
-            </section >
+            </section>
             <Footer />
             <SlideUp />
             <ViewMap
                 items={[
                     {
                         id: 'home',
-                        name: t('wwwViewMap1')
+                        name: t('onlineStores')
                     },
                     {
                         id: 'pricing',
-                        name: t('wwwViewMap2')
+                        name: t('priceList')
                     },
                     {
                         id: 'whyme',
-                        name: t('wwwViewMap3')
+                        name: t('whyme')
                     }
                 ]}
             />
-        </div >
+        </div>
     );
 };
 
-export default WebServicesView;
+export default EcommerceView;

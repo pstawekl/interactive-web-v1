@@ -1,9 +1,12 @@
 import { Facebook, GitBranch, Github, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 import LogoHorizontal from '../assets/logo-horizontal.png';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Footer() {
+    const { t } = useTranslation();
+    
     return (
-        <footer className="bg-gray-900">
+        <footer className="w-full bg-gray-300 dark:bg-gray-900">
             <div className="mx-auto max-w-7xl px-4">
                 <div className="grid grid-cols-1 gap-8 py-8 px-6 md:grid-cols-3">
                     <div className="flex flex-col lg:justify-start mb-8">
@@ -32,41 +35,41 @@ export default function Footer() {
                         </div>
                     </div>
                     <div className="hidden lg:block mt-auto mb-0 justify-center self-center text-center text-gray-400 text-sm">
-                        © {new Date().getFullYear()} Interactive. All rights reserved.
+                        © {new Date().getFullYear()} Interactive. {t('allRightsReserved')}
                     </div>
                     <div className="flex flex-row lg:flex-col justify-center items-end text-center lg:justify-end lg:text-left">
                         <nav className="flex flex-wrap flex-col gap-6">
-                            <h2 className="text-lg font-bold">Menu</h2>
+                            <h2 className="text-lg font-bold">{t('menu')}</h2>
                             <a
                                 href="/"
                                 className="hover:text-gray-300 transition-colors"
                             >
-                                Home
+                                {t('indexViewMap1')}
                             </a>
                             <a
                                 href="/about"
                                 className="hover:text-gray-300 transition-colors"
                             >
-                                Strony WWW
+                                {t('www')}
                             </a>
                             <a
-                                href="/services"
+                                href="/ecommerce"
                                 className="hover:text-gray-300 transition-colors"
                             >
-                                Aplikacje
+                                {t('onlineStore')}
                             </a>
                             <a
                                 href="/contact"
                                 className="hover:text-gray-300 transition-colors"
                             >
-                                Kontakt
+                                {t('contact')}
                             </a>
                         </nav>
                     </div>
                 </div>
                 <div className="px-4 py-6 md:flex md:items-center md:justify-between">
                     <div className="block lg:hidden mt-8 mb-0 text-center text-gray-400 text-sm">
-                        © {new Date().getFullYear()} Interactive. All rights reserved.
+                        © {new Date().getFullYear()} Interactive. {t('allRightsReserved')}
                     </div>
                 </div>
             </div>
