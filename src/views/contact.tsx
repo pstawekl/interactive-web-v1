@@ -14,6 +14,7 @@ import SlideUp from '@/components/slide-up';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { EmailStatus } from '@/components/email';
+import { useTranslation } from '@/hooks/useTranslation';
 
 // Fix for default marker icon
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -24,6 +25,7 @@ L.Icon.Default.mergeOptions({
 });
 
 const Contact = () => {
+    const { t } = useTranslation();
     const [isDuringSent, setIsDuringSent] = useState(false);
 
     useEffect(() => {
@@ -73,31 +75,31 @@ const Contact = () => {
 
         const token = await executeRecaptcha();
             if (!token) {
-                setStatus({ isError: true, message: 'Weryfikacja nie powiodła się. Spróbuj ponownie.' });
+                setStatus({ isError: true, message: t('validationErrors.recaptchaFailed') });
                 return;
             }
 
         if (!formData.name || !formData.email || !formData.message) {
-            setStatus({ isError: true, message: 'Wypełnij wszystkie pola!' });
+            setStatus({ isError: true, message: t('validationErrors.fillAllFields') });
             return;
         }
 
         // Validate email format
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(formData.email)) {
-            setStatus({ isError: true, message: 'Wprowadź poprawny adres email!' });
+            setStatus({ isError: true, message: t('validationErrors.invalidEmail') });
             return;
         }
 
         // Add basic anti-spam validation
         const messageWords = formData.message.split(' ').length;
         if (messageWords < 2) {
-            setStatus({ isError: true, message: 'Wiadomość jest zbyt krótka!' });
+            setStatus({ isError: true, message: t('validationErrors.messageTooShort') });
             return;
         }
 
         if (formData.message.toLowerCase().includes('http') || formData.message.toLowerCase().includes('www')) {
-            setStatus({ isError: true, message: 'Wiadomość nie może zawierać linków!' });
+            setStatus({ isError: true, message: t('validationErrors.noLinks') });
             return;
         }
 
@@ -110,14 +112,14 @@ const Contact = () => {
         )
             .then((response) => {
                 console.log('SUCCESS!', response.status, response.text);
-                setStatus({ isError: false, message: 'Wiadomość została wysłana.' });
+                setStatus({ isError: false, message: t('thankForTheMessage') });
                 setFormData({ name: '', email: '', message: '' });
                 setIsDuringSent(false);
             })
             .catch((err) => {
                 console.error('FAILED...', err);
                 setIsDuringSent(false);
-                setStatus({ isError: true, message: 'Wystąpił błąd podczas wysyłania wiadomości.' });
+                setStatus({ isError: true, message: t('validationErrors.sendingFailed') });
             });
     };
 
@@ -134,10 +136,10 @@ const Contact = () => {
         <div className="w-full">
             <div className="py-16"></div>
             <h1 className="text-6xl font-medium text-center mb-8">
-                Jesteśmy tu żeby pomóc
+                {t('contactHeader')}
             </h1>
             <h3 id="home" className='text-center text-lg max-w-3xl px-8 lg:px-0 mx-auto mb-8'>
-                Niezależnie od tego, czy jest to pytanie dotyczące naszych usług, prośba o pomoc techniczną, czy sugestie dotyczące ulepszeń, nasz zespół chętnie się z Tobą skonktaktuje i wysłucha opinii.
+                {t('contactDescription')}
             </h3>
 
             <div className='w-full mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-4 items-center justify-items-center mt-8 mb-32 [&>*+*]:lg:border-l'>
@@ -172,7 +174,7 @@ const Contact = () => {
                             status.message.length > 0 && <p className={`${status.isError ? "bh-red-300" : "bg-green-300"}` + " py-3 text-lg border rounded text-center text-white"}>{status.message}</p>
                         }
                         <div>
-                            <label htmlFor="name" className="block mb-2">Imię i nazwisko</label>
+                            <label htmlFor="name" className="block mb-2">{t('nameLabel')}</label>
                             <Input
                                 type="text"
                                 id="name"
@@ -184,7 +186,7 @@ const Contact = () => {
                             />
                         </div>
                         <div>
-                            <label htmlFor="email" className="block mb-2">Email</label>
+                            <label htmlFor="email" className="block mb-2">{t('emailLabel')}</label>
                             <Input
                                 type="email"
                                 id="email"
@@ -196,7 +198,7 @@ const Contact = () => {
                             />
                         </div>
                         <div>
-                            <label htmlFor="message" className="block mb-2">Wiadomość</label>
+                            <label htmlFor="message" className="block mb-2">{t('messageLabel')}</label>
                             <Textarea
                                 id="message"
                                 name="message"
@@ -208,7 +210,7 @@ const Contact = () => {
                         </div>
                         {
                             !isDuringSent && <Button variant={'interactive'} className='w-60 self-center' type="submit">
-                                Wyślij
+                                {t('send')}
                             </Button>
                         }
                         {
@@ -248,12 +250,12 @@ const Contact = () => {
             <ViewMap items={[
                 {
                     id: 'home',
-                    name: 'Napisz do nas',
+                    name: t('writeToUs')
                 }
                 ,
                 {
                     id: 'map',
-                    name: 'Mapa',
+                    name: t('map'),
                     onlyMobile: true
                 }
             ]} />
