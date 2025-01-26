@@ -1,10 +1,9 @@
-import Index from '@/views'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/feed')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <Index />
+  return <div>Hello "/feed"!</div>
 }

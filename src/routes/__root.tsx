@@ -44,46 +44,8 @@ function RootComponent() {
           >
             Home
           </Link>
-          <Link
-            to="/www"
-            className='hover:cursor-pointer hover:text-gray-600'
-            activeProps={{
-              className: 'text-gray-600 text-xl transition duration-300 hover:text-gray-100',
-            }}
-          >
-            Strony WWW
-          </Link>
-          <Link
-            to="/contact"
-            className='hover:cursor-pointer hover:text-gray-600'
-            activeProps={{
-              className: 'text-gray-600 text-xl transition duration-300 hover:text-gray-100',
-            }}
-          >
-            Kontakt
-          </Link>
         </div>
 
-        <div className='hidden lg:flex flex-row gap-2 justify-end'>
-          <a href="https://facebook.com/interactivenetpl" target="_blank" rel="noopener noreferrer">
-            <Facebook className="w-6 h-6 hover:text-gray-600 transition-colors" />
-          </a>
-          <a href="https://instagram.com/interactivenetpl" target="_blank" rel="noopener noreferrer">
-            <Instagram className="w-6 h-6 hover:text-gray-600 transition-colors" />
-          </a>
-          <a href="https://linkedin.com/in/jakub-stawski-dev" target="_blank" rel="noopener noreferrer">
-            <Linkedin className="w-6 h-6 hover:text-gray-600 transition-colors" />
-          </a>
-          <a href="https://github.com/pstawekl" target="_blank" rel="noopener noreferrer">
-            <Github className="w-6 h-6 hover:text-gray-600 transition-colors" />
-          </a>
-          <a href="tel:+48518275470">
-            <Phone className="w-6 h-6 hover:text-gray-600 transition-colors" />
-          </a>
-          <a href="mailto:jakub.stawski@interactive.net.pl">
-            <Mail className="w-6 h-6 hover:text-gray-600 transition-colors" />
-          </a>
-        </div>
 
         {/* Mobile Menu Button */}
         <button
@@ -110,24 +72,6 @@ function RootComponent() {
           >
             Home
           </Link>
-          <Link
-            to="/www"
-            className='text-2xl hover:text-white'
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Strony WWW
-          </Link>
-          <Link
-            to="/contact"
-            className='text-2xl hover:text-white'
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Kontakt
-          </Link>
-          <div className='flex flex-row gap-4 mt-8'>
-            <a href='https://www.facebook.com/interactivenetpl' target='_blank'><Facebook className='transition duration-300 hover:text-blue-500' size={40} /></a>
-            <a href='https://www.instagram.com/interactivenetpl' target='_blank'><Instagram className='transition duration-300 hover:text-blue-500' size={40} /></a>
-          </div>
         </div>
       )}
 

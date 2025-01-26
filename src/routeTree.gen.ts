@@ -11,21 +11,49 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as WwwImport } from './routes/www'
-import { Route as ContactImport } from './routes/contact'
+import { Route as TasksImport } from './routes/tasks'
+import { Route as RegisterImport } from './routes/register'
+import { Route as ModeratorImport } from './routes/moderator'
+import { Route as LoginImport } from './routes/login'
+import { Route as FeedImport } from './routes/feed'
+import { Route as DashboardImport } from './routes/dashboard'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
-const WwwRoute = WwwImport.update({
-  id: '/www',
-  path: '/www',
+const TasksRoute = TasksImport.update({
+  id: '/tasks',
+  path: '/tasks',
   getParentRoute: () => rootRoute,
 } as any)
 
-const ContactRoute = ContactImport.update({
-  id: '/contact',
-  path: '/contact',
+const RegisterRoute = RegisterImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ModeratorRoute = ModeratorImport.update({
+  id: '/moderator',
+  path: '/moderator',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LoginRoute = LoginImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FeedRoute = FeedImport.update({
+  id: '/feed',
+  path: '/feed',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardRoute = DashboardImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,18 +74,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactImport
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardImport
       parentRoute: typeof rootRoute
     }
-    '/www': {
-      id: '/www'
-      path: '/www'
-      fullPath: '/www'
-      preLoaderRoute: typeof WwwImport
+    '/feed': {
+      id: '/feed'
+      path: '/feed'
+      fullPath: '/feed'
+      preLoaderRoute: typeof FeedImport
+      parentRoute: typeof rootRoute
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/moderator': {
+      id: '/moderator'
+      path: '/moderator'
+      fullPath: '/moderator'
+      preLoaderRoute: typeof ModeratorImport
+      parentRoute: typeof rootRoute
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterImport
+      parentRoute: typeof rootRoute
+    }
+    '/tasks': {
+      id: '/tasks'
+      path: '/tasks'
+      fullPath: '/tasks'
+      preLoaderRoute: typeof TasksImport
       parentRoute: typeof rootRoute
     }
   }
@@ -67,42 +123,84 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
-  '/www': typeof WwwRoute
+  '/dashboard': typeof DashboardRoute
+  '/feed': typeof FeedRoute
+  '/login': typeof LoginRoute
+  '/moderator': typeof ModeratorRoute
+  '/register': typeof RegisterRoute
+  '/tasks': typeof TasksRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
-  '/www': typeof WwwRoute
+  '/dashboard': typeof DashboardRoute
+  '/feed': typeof FeedRoute
+  '/login': typeof LoginRoute
+  '/moderator': typeof ModeratorRoute
+  '/register': typeof RegisterRoute
+  '/tasks': typeof TasksRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
-  '/www': typeof WwwRoute
+  '/dashboard': typeof DashboardRoute
+  '/feed': typeof FeedRoute
+  '/login': typeof LoginRoute
+  '/moderator': typeof ModeratorRoute
+  '/register': typeof RegisterRoute
+  '/tasks': typeof TasksRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/www'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/feed'
+    | '/login'
+    | '/moderator'
+    | '/register'
+    | '/tasks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/www'
-  id: '__root__' | '/' | '/contact' | '/www'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/feed'
+    | '/login'
+    | '/moderator'
+    | '/register'
+    | '/tasks'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/feed'
+    | '/login'
+    | '/moderator'
+    | '/register'
+    | '/tasks'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ContactRoute: typeof ContactRoute
-  WwwRoute: typeof WwwRoute
+  DashboardRoute: typeof DashboardRoute
+  FeedRoute: typeof FeedRoute
+  LoginRoute: typeof LoginRoute
+  ModeratorRoute: typeof ModeratorRoute
+  RegisterRoute: typeof RegisterRoute
+  TasksRoute: typeof TasksRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ContactRoute: ContactRoute,
-  WwwRoute: WwwRoute,
+  DashboardRoute: DashboardRoute,
+  FeedRoute: FeedRoute,
+  LoginRoute: LoginRoute,
+  ModeratorRoute: ModeratorRoute,
+  RegisterRoute: RegisterRoute,
+  TasksRoute: TasksRoute,
 }
 
 export const routeTree = rootRoute
@@ -116,18 +214,34 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/contact",
-        "/www"
+        "/dashboard",
+        "/feed",
+        "/login",
+        "/moderator",
+        "/register",
+        "/tasks"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/contact": {
-      "filePath": "contact.tsx"
+    "/dashboard": {
+      "filePath": "dashboard.tsx"
     },
-    "/www": {
-      "filePath": "www.tsx"
+    "/feed": {
+      "filePath": "feed.tsx"
+    },
+    "/login": {
+      "filePath": "login.tsx"
+    },
+    "/moderator": {
+      "filePath": "moderator.tsx"
+    },
+    "/register": {
+      "filePath": "register.tsx"
+    },
+    "/tasks": {
+      "filePath": "tasks.tsx"
     }
   }
 }
