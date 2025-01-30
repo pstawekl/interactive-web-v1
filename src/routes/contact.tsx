@@ -1,10 +1,10 @@
-import LoginPage from '@/views/login'
+import Contact from '@/views/contact'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/login')({
+export const Route = createFileRoute('/contact')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <LoginPage />
+  return <Contact />
 }

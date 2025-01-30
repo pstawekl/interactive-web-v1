@@ -12,7 +12,9 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as WwwImport } from './routes/www'
+import { Route as TasksImport } from './routes/tasks'
 import { Route as EcommerceImport } from './routes/ecommerce'
+import { Route as DashboardImport } from './routes/dashboard'
 import { Route as CoursesImport } from './routes/courses'
 import { Route as ContactImport } from './routes/contact'
 import { Route as IndexImport } from './routes/index'
@@ -25,9 +27,21 @@ const WwwRoute = WwwImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const TasksRoute = TasksImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const EcommerceRoute = EcommerceImport.update({
   id: '/ecommerce',
   path: '/ecommerce',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardRoute = DashboardImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -74,11 +88,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CoursesImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardImport
+      parentRoute: typeof rootRoute
+    }
     '/ecommerce': {
       id: '/ecommerce'
       path: '/ecommerce'
       fullPath: '/ecommerce'
       preLoaderRoute: typeof EcommerceImport
+      parentRoute: typeof rootRoute
+    }
+    '/tasks': {
+      id: '/tasks'
+      path: '/tasks'
+      fullPath: '/tasks'
+      preLoaderRoute: typeof TasksImport
       parentRoute: typeof rootRoute
     }
     '/www': {
@@ -97,7 +125,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
+  '/dashboard': typeof DashboardRoute
   '/ecommerce': typeof EcommerceRoute
+  '/tasks': typeof TasksRoute
   '/www': typeof WwwRoute
 }
 
@@ -105,7 +135,9 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
+  '/dashboard': typeof DashboardRoute
   '/ecommerce': typeof EcommerceRoute
+  '/tasks': typeof TasksRoute
   '/www': typeof WwwRoute
 }
 
@@ -114,16 +146,40 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
+  '/dashboard': typeof DashboardRoute
   '/ecommerce': typeof EcommerceRoute
+  '/tasks': typeof TasksRoute
   '/www': typeof WwwRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/courses' | '/ecommerce' | '/www'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/courses'
+    | '/dashboard'
+    | '/ecommerce'
+    | '/tasks'
+    | '/www'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/courses' | '/ecommerce' | '/www'
-  id: '__root__' | '/' | '/contact' | '/courses' | '/ecommerce' | '/www'
+  to:
+    | '/'
+    | '/contact'
+    | '/courses'
+    | '/dashboard'
+    | '/ecommerce'
+    | '/tasks'
+    | '/www'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/courses'
+    | '/dashboard'
+    | '/ecommerce'
+    | '/tasks'
+    | '/www'
   fileRoutesById: FileRoutesById
 }
 
@@ -131,7 +187,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRoute
+  DashboardRoute: typeof DashboardRoute
   EcommerceRoute: typeof EcommerceRoute
+  TasksRoute: typeof TasksRoute
   WwwRoute: typeof WwwRoute
 }
 
@@ -139,7 +197,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
   CoursesRoute: CoursesRoute,
+  DashboardRoute: DashboardRoute,
   EcommerceRoute: EcommerceRoute,
+  TasksRoute: TasksRoute,
   WwwRoute: WwwRoute,
 }
 
@@ -156,7 +216,9 @@ export const routeTree = rootRoute
         "/",
         "/contact",
         "/courses",
+        "/dashboard",
         "/ecommerce",
+        "/tasks",
         "/www"
       ]
     },
@@ -169,8 +231,14 @@ export const routeTree = rootRoute
     "/courses": {
       "filePath": "courses.tsx"
     },
+    "/dashboard": {
+      "filePath": "dashboard.tsx"
+    },
     "/ecommerce": {
       "filePath": "ecommerce.tsx"
+    },
+    "/tasks": {
+      "filePath": "tasks.tsx"
     },
     "/www": {
       "filePath": "www.tsx"

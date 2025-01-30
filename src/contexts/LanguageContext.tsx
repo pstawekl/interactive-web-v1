@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type Language = 'pl' | 'en';
 
@@ -7,12 +7,12 @@ interface LanguageContextType {
     setLanguage: (lang: Language) => void;
 }
 
-const LANGUAGE_KEY = 'app-language';
+const LANGUAGE_KEY = 'language';
 const DEFAULT_LANGUAGE: Language = 'pl';
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+export default function LanguageProvider({ children }: { children: React.ReactNode }): React.ReactNode {
     const [currentLanguage, setCurrentLanguage] = useState<Language>(() => {
         const savedLanguage = localStorage.getItem(LANGUAGE_KEY);
         return (savedLanguage as Language) || DEFAULT_LANGUAGE;
@@ -23,7 +23,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem(LANGUAGE_KEY, lang);
     };
 
-    // Ensure localStorage is synced with state
     useEffect(() => {
         localStorage.setItem(LANGUAGE_KEY, currentLanguage);
     }, [currentLanguage]);

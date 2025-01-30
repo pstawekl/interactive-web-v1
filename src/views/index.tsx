@@ -1,11 +1,9 @@
-import React from "react";
-import { Hero } from "@/components/hero";
-import { Headings } from "@/components/headings";
-import SlideUp from "@/components/slide-up";
 import CallToAction from "@/components/call-to-action";
-import { ViewMap } from "@/components/view-map";
 import Footer from "@/components/footer";
-import LanguagePicker from "@/components/language-picker";
+import { Headings } from "@/components/headings";
+import { Hero } from "@/components/hero";
+import SlideUp from "@/components/slide-up";
+import { ViewMap } from "@/components/view-map";
 import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Index() {
