@@ -13,6 +13,10 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as WwwImport } from './routes/www'
 import { Route as TasksImport } from './routes/tasks'
+import { Route as StronyInternetoweZdunskaWolaImport } from './routes/strony-internetowe-zdunska-wola'
+import { Route as StronyInternetoweSieradzImport } from './routes/strony-internetowe-sieradz'
+import { Route as StronyInternetoweLodzkieImport } from './routes/strony-internetowe-lodzkie'
+import { Route as StronyInternetoweLodzImport } from './routes/strony-internetowe-lodz'
 import { Route as EcommerceImport } from './routes/ecommerce'
 import { Route as DashboardImport } from './routes/dashboard'
 import { Route as CoursesImport } from './routes/courses'
@@ -30,6 +34,31 @@ const WwwRoute = WwwImport.update({
 const TasksRoute = TasksImport.update({
   id: '/tasks',
   path: '/tasks',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const StronyInternetoweZdunskaWolaRoute =
+  StronyInternetoweZdunskaWolaImport.update({
+    id: '/strony-internetowe-zdunska-wola',
+    path: '/strony-internetowe-zdunska-wola',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const StronyInternetoweSieradzRoute = StronyInternetoweSieradzImport.update({
+  id: '/strony-internetowe-sieradz',
+  path: '/strony-internetowe-sieradz',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const StronyInternetoweLodzkieRoute = StronyInternetoweLodzkieImport.update({
+  id: '/strony-internetowe-lodzkie',
+  path: '/strony-internetowe-lodzkie',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const StronyInternetoweLodzRoute = StronyInternetoweLodzImport.update({
+  id: '/strony-internetowe-lodz',
+  path: '/strony-internetowe-lodz',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -102,6 +131,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EcommerceImport
       parentRoute: typeof rootRoute
     }
+    '/strony-internetowe-lodz': {
+      id: '/strony-internetowe-lodz'
+      path: '/strony-internetowe-lodz'
+      fullPath: '/strony-internetowe-lodz'
+      preLoaderRoute: typeof StronyInternetoweLodzImport
+      parentRoute: typeof rootRoute
+    }
+    '/strony-internetowe-lodzkie': {
+      id: '/strony-internetowe-lodzkie'
+      path: '/strony-internetowe-lodzkie'
+      fullPath: '/strony-internetowe-lodzkie'
+      preLoaderRoute: typeof StronyInternetoweLodzkieImport
+      parentRoute: typeof rootRoute
+    }
+    '/strony-internetowe-sieradz': {
+      id: '/strony-internetowe-sieradz'
+      path: '/strony-internetowe-sieradz'
+      fullPath: '/strony-internetowe-sieradz'
+      preLoaderRoute: typeof StronyInternetoweSieradzImport
+      parentRoute: typeof rootRoute
+    }
+    '/strony-internetowe-zdunska-wola': {
+      id: '/strony-internetowe-zdunska-wola'
+      path: '/strony-internetowe-zdunska-wola'
+      fullPath: '/strony-internetowe-zdunska-wola'
+      preLoaderRoute: typeof StronyInternetoweZdunskaWolaImport
+      parentRoute: typeof rootRoute
+    }
     '/tasks': {
       id: '/tasks'
       path: '/tasks'
@@ -127,6 +184,10 @@ export interface FileRoutesByFullPath {
   '/courses': typeof CoursesRoute
   '/dashboard': typeof DashboardRoute
   '/ecommerce': typeof EcommerceRoute
+  '/strony-internetowe-lodz': typeof StronyInternetoweLodzRoute
+  '/strony-internetowe-lodzkie': typeof StronyInternetoweLodzkieRoute
+  '/strony-internetowe-sieradz': typeof StronyInternetoweSieradzRoute
+  '/strony-internetowe-zdunska-wola': typeof StronyInternetoweZdunskaWolaRoute
   '/tasks': typeof TasksRoute
   '/www': typeof WwwRoute
 }
@@ -137,6 +198,10 @@ export interface FileRoutesByTo {
   '/courses': typeof CoursesRoute
   '/dashboard': typeof DashboardRoute
   '/ecommerce': typeof EcommerceRoute
+  '/strony-internetowe-lodz': typeof StronyInternetoweLodzRoute
+  '/strony-internetowe-lodzkie': typeof StronyInternetoweLodzkieRoute
+  '/strony-internetowe-sieradz': typeof StronyInternetoweSieradzRoute
+  '/strony-internetowe-zdunska-wola': typeof StronyInternetoweZdunskaWolaRoute
   '/tasks': typeof TasksRoute
   '/www': typeof WwwRoute
 }
@@ -148,6 +213,10 @@ export interface FileRoutesById {
   '/courses': typeof CoursesRoute
   '/dashboard': typeof DashboardRoute
   '/ecommerce': typeof EcommerceRoute
+  '/strony-internetowe-lodz': typeof StronyInternetoweLodzRoute
+  '/strony-internetowe-lodzkie': typeof StronyInternetoweLodzkieRoute
+  '/strony-internetowe-sieradz': typeof StronyInternetoweSieradzRoute
+  '/strony-internetowe-zdunska-wola': typeof StronyInternetoweZdunskaWolaRoute
   '/tasks': typeof TasksRoute
   '/www': typeof WwwRoute
 }
@@ -160,6 +229,10 @@ export interface FileRouteTypes {
     | '/courses'
     | '/dashboard'
     | '/ecommerce'
+    | '/strony-internetowe-lodz'
+    | '/strony-internetowe-lodzkie'
+    | '/strony-internetowe-sieradz'
+    | '/strony-internetowe-zdunska-wola'
     | '/tasks'
     | '/www'
   fileRoutesByTo: FileRoutesByTo
@@ -169,6 +242,10 @@ export interface FileRouteTypes {
     | '/courses'
     | '/dashboard'
     | '/ecommerce'
+    | '/strony-internetowe-lodz'
+    | '/strony-internetowe-lodzkie'
+    | '/strony-internetowe-sieradz'
+    | '/strony-internetowe-zdunska-wola'
     | '/tasks'
     | '/www'
   id:
@@ -178,6 +255,10 @@ export interface FileRouteTypes {
     | '/courses'
     | '/dashboard'
     | '/ecommerce'
+    | '/strony-internetowe-lodz'
+    | '/strony-internetowe-lodzkie'
+    | '/strony-internetowe-sieradz'
+    | '/strony-internetowe-zdunska-wola'
     | '/tasks'
     | '/www'
   fileRoutesById: FileRoutesById
@@ -189,6 +270,10 @@ export interface RootRouteChildren {
   CoursesRoute: typeof CoursesRoute
   DashboardRoute: typeof DashboardRoute
   EcommerceRoute: typeof EcommerceRoute
+  StronyInternetoweLodzRoute: typeof StronyInternetoweLodzRoute
+  StronyInternetoweLodzkieRoute: typeof StronyInternetoweLodzkieRoute
+  StronyInternetoweSieradzRoute: typeof StronyInternetoweSieradzRoute
+  StronyInternetoweZdunskaWolaRoute: typeof StronyInternetoweZdunskaWolaRoute
   TasksRoute: typeof TasksRoute
   WwwRoute: typeof WwwRoute
 }
@@ -199,6 +284,10 @@ const rootRouteChildren: RootRouteChildren = {
   CoursesRoute: CoursesRoute,
   DashboardRoute: DashboardRoute,
   EcommerceRoute: EcommerceRoute,
+  StronyInternetoweLodzRoute: StronyInternetoweLodzRoute,
+  StronyInternetoweLodzkieRoute: StronyInternetoweLodzkieRoute,
+  StronyInternetoweSieradzRoute: StronyInternetoweSieradzRoute,
+  StronyInternetoweZdunskaWolaRoute: StronyInternetoweZdunskaWolaRoute,
   TasksRoute: TasksRoute,
   WwwRoute: WwwRoute,
 }
@@ -218,6 +307,10 @@ export const routeTree = rootRoute
         "/courses",
         "/dashboard",
         "/ecommerce",
+        "/strony-internetowe-lodz",
+        "/strony-internetowe-lodzkie",
+        "/strony-internetowe-sieradz",
+        "/strony-internetowe-zdunska-wola",
         "/tasks",
         "/www"
       ]
@@ -236,6 +329,18 @@ export const routeTree = rootRoute
     },
     "/ecommerce": {
       "filePath": "ecommerce.tsx"
+    },
+    "/strony-internetowe-lodz": {
+      "filePath": "strony-internetowe-lodz.tsx"
+    },
+    "/strony-internetowe-lodzkie": {
+      "filePath": "strony-internetowe-lodzkie.tsx"
+    },
+    "/strony-internetowe-sieradz": {
+      "filePath": "strony-internetowe-sieradz.tsx"
+    },
+    "/strony-internetowe-zdunska-wola": {
+      "filePath": "strony-internetowe-zdunska-wola.tsx"
     },
     "/tasks": {
       "filePath": "tasks.tsx"

@@ -88,7 +88,14 @@ export default function RegisterPage() {
             </div>
         </div>
         <div>
-            <img src="https://images.unsplash.com/photo-1628717341663-0007b0ee2597?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Login" className="object-cover h-full w-full" />
+            <img
+                src="https://images.unsplash.com/photo-1628717341663-0007b0ee2597?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Register"
+                className="object-cover h-full w-full"
+                width={1920}
+                height={1080}
+                loading="lazy"
+            />
         </div>
     </div>
 }

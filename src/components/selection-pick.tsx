@@ -35,7 +35,7 @@ export function SelectionPick({ width, title, description, price, side, icon, li
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger>
-                            <Button variant={'interactive'}>Sprawdź</Button>
+                            <Button variant={'interactive'} aria-label={`Sprawdź szczegóły ${title}`}>Sprawdź</Button>
                         </TooltipTrigger>
                         <TooltipContent>
                             {tooltip}
@@ -45,7 +45,13 @@ export function SelectionPick({ width, title, description, price, side, icon, li
             }
             {
                 link &&
-                <Button variant={'interactive'} onClick={() => navigate({ to: link })}>{buttonCaption && buttonCaption != "" ? buttonCaption : "Sprawdź"}</Button>
+                <Button
+                    variant={'interactive'}
+                    onClick={() => navigate({ to: link })}
+                    aria-label={`Przejdź do ${title}`}
+                >
+                    {buttonCaption && buttonCaption != "" ? buttonCaption : "Sprawdź"}
+                </Button>
             }
         </div>
     );

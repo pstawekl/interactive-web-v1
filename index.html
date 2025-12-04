@@ -1,44 +1,127 @@
 <!doctype html>
-<html lang="en">
+<html lang="pl">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interactive - aplikacje internetowe dla Twojej firmy </title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" type="image/png" href="/logo.png">
-    <!-- Dodajemy skrypt inicjalizujący motyw -->
-    <script>
-      // Sprawdź localStorage
-      const theme = localStorage.getItem('theme');
-      // Jeśli jest zapisany motyw, użyj go
-      if (theme) {
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-      }
-    </script>
-  <style type="text/tailwindcss">
+
+  <!-- Primary Meta Tags -->
+  <title>Interactive – Profesjonalne Strony Internetowe Zduńska Wola | Tworzenie Stron WWW</title>
+  <meta name="title" content="Interactive – Profesjonalne Strony Internetowe Zduńska Wola | Tworzenie Stron WWW" />
+  <meta name="description"
+    content="Interactive – tworzymy profesjonalne strony internetowe w Zduńskiej Woli. Nowoczesne, szybkie i responsywne strony www dla firm. Skontaktuj się, aby otrzymać darmową wycenę." />
+  <meta name="keywords"
+    content="strona internetowa Zduńska Wola, strony internetowe Zduńska Wola, tworzenie stron internetowych Zduńska Wola, projektowanie stron www Zduńska Wola, strony www, strony internetowe" />
+  <meta name="author" content="Interactive" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="Polish" />
+  <meta name="revisit-after" content="7 days" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://interactive.net.pl/" />
+  <meta property="og:title" content="Interactive – Profesjonalne Strony Internetowe Zduńska Wola" />
+  <meta property="og:description"
+    content="Interactive – tworzymy profesjonalne strony internetowe w Zduńskiej Woli. Nowoczesne, szybkie i responsywne strony www dla firm." />
+  <meta property="og:image" content="https://interactive.net.pl/logo-horizontal.png" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:site_name" content="Interactive" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://interactive.net.pl/" />
+  <meta property="twitter:title" content="Interactive – Profesjonalne Strony Internetowe Zduńska Wola" />
+  <meta property="twitter:description"
+    content="Interactive – tworzymy profesjonalne strony internetowe w Zduńskiej Woli. Nowoczesne, szybkie i responsywne strony www dla firm." />
+  <meta property="twitter:image" content="https://interactive.net.pl/logo-horizontal.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+
+  <!-- Preconnect for external domains -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.google-analytics.com" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+
+  <!-- Resource hints for performance -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+  <!-- Theme initialization script -->
+  <script>
+    // Sprawdź localStorage
+    const savedTheme = localStorage.getItem('theme');
+    // Jeśli jest zapisany motyw, użyj go, w przeciwnym razie ustaw domyślnie ciemny motyw
+    if (savedTheme) {
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    } else {
+      // Domyślnie ciemny motyw, niezależnie od preferencji systemowych
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+  <!-- Critical CSS inline -->
+  <style>
     html {
-        color-scheme: light dark;
-      }
+      color-scheme: light dark;
+    }
+
+    * {
+      border-color: rgb(229 231 235 / 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
       * {
-        @apply border-gray-200 dark:border-gray-800;
+        border-color: rgb(31 41 55 / 1);
       }
+    }
+
+    body {
+      background-color: rgb(249 250 251 / 1);
+      color: rgb(3 7 18 / 1);
+      margin: 0;
+      padding: 0;
+    }
+
+    @media (prefers-color-scheme: dark) {
       body {
-        @apply bg-gray-50 text-gray-950 dark:bg-gray-900 dark:text-gray-200;
+        background-color: rgb(17 24 39 / 1);
+        color: rgb(229 231 235 / 1);
       }
-    </style>
+    }
+
+    html,
+    body {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+    }
+
+    #app {
+      width: 100%;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app"></div>
   <script type="module" src="/src/main.tsx"></script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGFDFVSQ3F"></script>
+
+  <!-- Google tag (gtag.js) - deferred -->
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-EGFDFVSQ3F"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-EGFDFVSQ3F');
   </script>
 </body>

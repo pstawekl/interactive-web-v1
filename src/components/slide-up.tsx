@@ -1,27 +1,30 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { IoIosArrowUp } from 'react-icons/io';
 
 const SlideUp = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     const toggleVisibility = () => {
-        if (window.pageYOffset > 300) {
-            setIsVisible(true);
-        } else {
-            setIsVisible(false);
-        }
+        const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        const shouldBeVisible = scrollY > 300
+        setIsVisible(shouldBeVisible)
     };
 
     useEffect(() => {
-        window.addEventListener('scroll', toggleVisibility);
-        return () => {
+        // Sprawdź przy załadowaniu
+        toggleVisibility()
 
-            
-            window.removeEventListener('scroll', toggleVisibility);
+        window.addEventListener('scroll', toggleVisibility, { passive: true })
+        document.addEventListener('scroll', toggleVisibility, { passive: true })
+
+        return () => {
+            window.removeEventListener('scroll', toggleVisibility)
+            document.removeEventListener('scroll', toggleVisibility)
         };
-    }, []);
+    }, [isVisible]);
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -31,17 +34,34 @@ const SlideUp = () => {
     };
 
     return (
-        <>
+        <AnimatePresence>
             {isVisible && (
-                <button
+                <motion.button
                     onClick={scrollToTop}
-                    className="fixed bottom-24 right-5 z-50 flex h-12 w-12 items-center justify-center rounded shadow-lg bg-white text-blue-500 shadow-lg transition-all duration-300 hover:bg-blue-600 hover:shadow-xl"
+                    className="fixed bottom-24 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-2xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 text-white transition-all duration-300 hover:shadow-blue-500/50"
                     aria-label="Scroll to top"
+                    initial={{ opacity: 0, scale: 0, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0, y: 20 }}
+                    whileHover={{ scale: 1.1, y: -5 }}
+                    whileTap={{ scale: 0.9 }}
                 >
-                    <IoIosArrowUp className="h-6 w-6" />
-                </button>
+                    <motion.div
+                        animate={{ y: [0, -5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                        <IoIosArrowUp className="h-7 w-7" />
+                    </motion.div>
+
+                    {/* Glow effect */}
+                    <motion.div
+                        className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 opacity-50 blur-xl"
+                        animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                    />
+                </motion.button>
             )}
-        </>
+        </AnimatePresence>
     );
 };
 
