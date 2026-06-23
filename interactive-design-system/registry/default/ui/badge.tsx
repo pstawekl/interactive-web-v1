@@ -11,11 +11,11 @@ const badgeVariants = cva(
         neutral:
           "border-border bg-[var(--surface-elevated)] text-[var(--text-muted)]",
         brand:
-          "border-purple-500/35 bg-purple-500/10 text-purple-400",
+          "border-[color-mix(in_srgb,var(--brand-purple)_35%,transparent)] bg-[color-mix(in_srgb,var(--brand-purple)_12%,transparent)] text-[var(--brand-purple)]",
         gradient:
           "border-transparent [background:var(--gradient-cta)] text-white",
         success:
-          "border-green-500/35 bg-green-500/10 text-green-400",
+          "border-[color-mix(in_srgb,var(--success)_35%,transparent)] bg-[color-mix(in_srgb,var(--success)_12%,transparent)] text-[var(--success)]",
         outline:
           "border-[var(--border-strong)] bg-transparent text-[var(--text-body)]",
       },
