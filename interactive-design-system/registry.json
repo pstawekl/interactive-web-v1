@@ -1,0 +1,410 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "interactive",
+  "homepage": "https://interactive.net.pl",
+  "items": [
+    {
+      "name": "brand",
+      "type": "registry:base",
+      "title": "Interactive brand foundation",
+      "description": "Kolory marki, gradienty, zmienne CSS, fonty i konfiguracja Tailwind dla ekosystemu Interactive Apps.",
+      "style": "new-york",
+      "baseColor": "zinc",
+      "iconLibrary": "lucide",
+      "dependencies": ["tailwindcss-animate"],
+      "files": [
+        {
+          "path": "registry/default/brand/theme.css",
+          "type": "registry:theme"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "brand-violet": "#af14f7",
+          "brand-purple": "#9333ea",
+          "brand-indigo": "#6366f1",
+          "brand-blue": "#2563eb",
+          "brand-cyan": "#06b6d4",
+          "brand-teal": "#2ec1ab",
+          "brand-pink": "#db2777",
+          "brand-pastel-lilac": "#c4a9e8",
+          "brand-pastel-periwinkle": "#9fb8df",
+          "brand-pastel-aqua": "#7fd2cf",
+          "gradient-logo": "linear-gradient(90deg, #af14f7 0%, #6366f1 45%, #548ec1 70%, #2ec1ab 100%)",
+          "gradient-brand": "linear-gradient(90deg, #2563eb 0%, #9333ea 50%, #db2777 100%)",
+          "gradient-cta": "linear-gradient(90deg, #2563eb 0%, #9333ea 100%)",
+          "gradient-wash": "linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(147, 51, 234, 0.1) 50%, rgba(219, 39, 119, 0.1) 100%)",
+          "gradient-band": "linear-gradient(135deg, #2563eb 0%, #9333ea 50%, #db2777 100%)",
+          "gradient-pastel": "linear-gradient(105deg, #c4a9e8 0%, #9fb8df 52%, #7fd2cf 100%)",
+          "slate-50": "#fafafa",
+          "slate-100": "#f4f4f5",
+          "slate-200": "#e4e4e7",
+          "slate-300": "#d4d4d8",
+          "slate-400": "#a1a1aa",
+          "slate-500": "#71717a",
+          "slate-600": "#52525b",
+          "slate-700": "#3f3f46",
+          "slate-800": "#27272a",
+          "slate-900": "#18181b",
+          "slate-950": "#09090b",
+          "surface-card": "#ffffff",
+          "surface-elevated": "#ffffff",
+          "surface-muted": "#f4f4f5",
+          "surface-charcoal": "#2b2b2e",
+          "text-body": "#18181b",
+          "text-muted": "#52525b",
+          "text-subtle": "#71717a",
+          "border-strong": "#d4d4d8",
+          "accent-price": "#9333ea",
+          "success": "#22c55e",
+          "warning": "#f59e0b",
+          "danger": "#ef4444",
+          "info": "#2563eb",
+          "font-display": "'Space Grotesk', ui-sans-serif, system-ui, sans-serif",
+          "font-body": "'Manrope', ui-sans-serif, system-ui, sans-serif",
+          "font-mono": "'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace",
+          "radius": "0.5rem",
+          "glass-bg": "rgba(255, 255, 255, 0.72)",
+          "glass-border": "rgba(9, 9, 11, 0.1)",
+          "background": "0 0% 100%",
+          "foreground": "240 10% 3.9%",
+          "card": "0 0% 100%",
+          "card-foreground": "240 10% 3.9%",
+          "popover": "0 0% 100%",
+          "popover-foreground": "240 10% 3.9%",
+          "primary": "271 81% 56%",
+          "primary-foreground": "0 0% 100%",
+          "secondary": "240 4.8% 95.9%",
+          "secondary-foreground": "240 5.9% 10%",
+          "muted": "240 4.8% 95.9%",
+          "muted-foreground": "240 3.8% 46.1%",
+          "accent": "240 4.8% 95.9%",
+          "accent-foreground": "240 5.9% 10%",
+          "destructive": "0 84.2% 60.2%",
+          "destructive-foreground": "0 0% 98%",
+          "border": "240 5.9% 90%",
+          "input": "240 5.9% 90%",
+          "ring": "271 81% 56%"
+        },
+        "dark": {
+          "surface-card": "#0e0e11",
+          "surface-elevated": "#18181b",
+          "surface-muted": "#1c1c20",
+          "surface-charcoal": "#2b2b2e",
+          "text-body": "#fafafa",
+          "text-muted": "#a1a1aa",
+          "text-subtle": "#71717a",
+          "border-strong": "#3f3f46",
+          "glass-bg": "rgba(14, 14, 17, 0.72)",
+          "glass-border": "rgba(255, 255, 255, 0.1)",
+          "background": "240 10% 3.9%",
+          "foreground": "0 0% 98%",
+          "card": "240 6% 6%",
+          "card-foreground": "0 0% 98%",
+          "popover": "240 6% 6%",
+          "popover-foreground": "0 0% 98%",
+          "primary": "271 81% 56%",
+          "primary-foreground": "0 0% 100%",
+          "secondary": "240 3.7% 15.9%",
+          "secondary-foreground": "0 0% 98%",
+          "muted": "240 3.7% 15.9%",
+          "muted-foreground": "240 5% 64.9%",
+          "accent": "240 3.7% 15.9%",
+          "accent-foreground": "0 0% 98%",
+          "destructive": "0 62.8% 30.6%",
+          "destructive-foreground": "0 0% 98%",
+          "border": "240 3.7% 15.9%",
+          "input": "240 3.7% 15.9%",
+          "ring": "271 81% 56%"
+        }
+      },
+      "tailwind": {
+        "config": {
+          "darkMode": "class",
+          "theme": {
+            "extend": {
+              "fontFamily": {
+                "display": ["var(--font-display)"],
+                "body": ["var(--font-body)"],
+                "mono": ["var(--font-mono)"]
+              },
+              "borderRadius": {
+                "lg": "var(--radius)",
+                "md": "calc(var(--radius) - 2px)",
+                "sm": "calc(var(--radius) - 4px)"
+              },
+              "colors": {
+                "interactive": {
+                  "violet": "var(--brand-violet)",
+                  "purple": "var(--brand-purple)",
+                  "indigo": "var(--brand-indigo)",
+                  "blue": "var(--brand-blue)",
+                  "cyan": "var(--brand-cyan)",
+                  "teal": "var(--brand-teal)",
+                  "pink": "var(--brand-pink)",
+                  "surface": {
+                    "card": "var(--surface-card)",
+                    "elevated": "var(--surface-elevated)",
+                    "muted": "var(--surface-muted)",
+                    "charcoal": "var(--surface-charcoal)"
+                  },
+                  "text": {
+                    "body": "var(--text-body)",
+                    "muted": "var(--text-muted)",
+                    "subtle": "var(--text-subtle)"
+                  },
+                  "border": {
+                    "strong": "var(--border-strong)"
+                  }
+                },
+                "background": "hsl(var(--background))",
+                "foreground": "hsl(var(--foreground))",
+                "card": {
+                  "DEFAULT": "hsl(var(--card))",
+                  "foreground": "hsl(var(--card-foreground))"
+                },
+                "popover": {
+                  "DEFAULT": "hsl(var(--popover))",
+                  "foreground": "hsl(var(--popover-foreground))"
+                },
+                "primary": {
+                  "DEFAULT": "hsl(var(--primary))",
+                  "foreground": "hsl(var(--primary-foreground))"
+                },
+                "secondary": {
+                  "DEFAULT": "hsl(var(--secondary))",
+                  "foreground": "hsl(var(--secondary-foreground))"
+                },
+                "muted": {
+                  "DEFAULT": "hsl(var(--muted))",
+                  "foreground": "hsl(var(--muted-foreground))"
+                },
+                "accent": {
+                  "DEFAULT": "hsl(var(--accent))",
+                  "foreground": "hsl(var(--accent-foreground))"
+                },
+                "destructive": {
+                  "DEFAULT": "hsl(var(--destructive))",
+                  "foreground": "hsl(var(--destructive-foreground))"
+                },
+                "border": "hsl(var(--border))",
+                "input": "hsl(var(--input))",
+                "ring": "hsl(var(--ring))"
+              },
+              "transitionTimingFunction": {
+                "in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
+                "out-expo": "cubic-bezier(0.19, 1, 0.22, 1)",
+                "ease-in": "cubic-bezier(0.4, 0, 1, 1)",
+                "ease-out": "cubic-bezier(0, 0, 0.2, 1)",
+                "ease-in-out": "cubic-bezier(0.4, 0, 0.2, 1)"
+              },
+              "animation": {
+                "gradient": "gradient-shift 15s ease infinite",
+                "float": "float 3s ease-in-out infinite",
+                "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+                "shimmer": "shimmer 2s infinite"
+              },
+              "keyframes": {
+                "gradient-shift": {
+                  "0%, 100%": {
+                    "background-position": "0% 50%"
+                  },
+                  "50%": {
+                    "background-position": "100% 50%"
+                  }
+                },
+                "float": {
+                  "0%, 100%": {
+                    "transform": "translateY(0px)"
+                  },
+                  "50%": {
+                    "transform": "translateY(-20px)"
+                  }
+                },
+                "pulse-glow": {
+                  "0%, 100%": {
+                    "opacity": "1",
+                    "transform": "scale(1)"
+                  },
+                  "50%": {
+                    "opacity": "0.8",
+                    "transform": "scale(1.05)"
+                  }
+                },
+                "shimmer": {
+                  "0%": {
+                    "background-position": "-1000px 0"
+                  },
+                  "100%": {
+                    "background-position": "1000px 0"
+                  }
+                }
+              }
+            }
+          },
+          "plugins": ["tailwindcss-animate"]
+        }
+      }
+    },
+    {
+      "name": "space-grotesk",
+      "type": "registry:font",
+      "title": "Space Grotesk",
+      "description": "Display i heading font marki Interactive.",
+      "font": {
+        "family": "Space Grotesk",
+        "provider": "google",
+        "import": "Space_Grotesk",
+        "variable": "--font-display",
+        "weight": ["400", "500", "600", "700"],
+        "subsets": ["latin", "latin-ext"],
+        "selector": "h1, h2, h3, h4, h5, h6"
+      }
+    },
+    {
+      "name": "manrope",
+      "type": "registry:font",
+      "title": "Manrope",
+      "description": "Body i UI font marki Interactive.",
+      "font": {
+        "family": "Manrope",
+        "provider": "google",
+        "import": "Manrope",
+        "variable": "--font-body",
+        "weight": ["400", "500", "600", "700", "800"],
+        "subsets": ["latin", "latin-ext"],
+        "selector": "html"
+      }
+    },
+    {
+      "name": "jetbrains-mono",
+      "type": "registry:font",
+      "title": "JetBrains Mono",
+      "description": "Font techniczny dla etykiet, cen i kodu.",
+      "font": {
+        "family": "JetBrains Mono",
+        "provider": "google",
+        "import": "JetBrains_Mono",
+        "variable": "--font-mono",
+        "weight": ["400", "500", "600", "700", "800"],
+        "subsets": ["latin", "latin-ext"],
+        "selector": "code, pre, kbd, samp"
+      }
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utils",
+      "description": "Funkcja cn() łącząca clsx i tailwind-merge.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/default/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "@lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Przycisk w stylu Interactive z wariantem gradientowego CTA.",
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "registryDependencies": ["brand", "utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "@ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Karta Interactive z wariantami default, feature, glass i elevated.",
+      "registryDependencies": ["brand", "utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/card.tsx",
+          "type": "registry:ui",
+          "target": "@ui/card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Pole tekstowe w ciemnym stylu Interactive.",
+      "registryDependencies": ["brand", "utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/input.tsx",
+          "type": "registry:ui",
+          "target": "@ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Mała etykieta statusu lub kategorii w stylu Interactive.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["brand", "utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/badge.tsx",
+          "type": "registry:ui",
+          "target": "@ui/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Przełącznik Radix z gradientowym stanem aktywnym Interactive.",
+      "dependencies": ["@radix-ui/react-switch"],
+      "registryDependencies": ["brand", "utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/switch.tsx",
+          "type": "registry:ui",
+          "target": "@ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Wielowierszowe pole formularza w stylu Interactive.",
+      "registryDependencies": ["brand", "utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/textarea.tsx",
+          "type": "registry:ui",
+          "target": "@ui/textarea.tsx"
+        }
+      ]
+    },
+    {
+      "name": "section-heading",
+      "type": "registry:ui",
+      "title": "SectionHeading",
+      "description": "Nagłówek sekcji z eyebrow, opisem i gradientowym tytułem.",
+      "registryDependencies": ["brand", "utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/section-heading.tsx",
+          "type": "registry:ui",
+          "target": "@ui/section-heading.tsx"
+        }
+      ]
+    }
+  ]
+}

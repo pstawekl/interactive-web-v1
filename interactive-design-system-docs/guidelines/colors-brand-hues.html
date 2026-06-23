@@ -1,0 +1,27 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Brand hues" subtitle="Core brand palette — purple is primary" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--background); padding: 24px; font-family: var(--font-body); }
+  .row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+  .sw { height: 64px; border-radius: var(--radius-lg); border: 1px solid var(--border); position: relative; }
+  .star { position:absolute; top:6px; right:8px; color:#fff; font-size:13px; }
+  .lab { margin-top: 8px; font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); line-height:1.4; }
+  .nm { color: var(--text-body); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div><div class="sw" style="background:var(--brand-violet)"></div><div class="lab"><span class="nm">violet</span><br>#AF14F7</div></div>
+    <div><div class="sw" style="background:var(--brand-purple)"><span class="star">★</span></div><div class="lab"><span class="nm">purple</span><br>#9333EA</div></div>
+    <div><div class="sw" style="background:var(--brand-indigo)"></div><div class="lab"><span class="nm">indigo</span><br>#6366F1</div></div>
+    <div><div class="sw" style="background:var(--brand-blue)"></div><div class="lab"><span class="nm">blue</span><br>#2563EB</div></div>
+    <div><div class="sw" style="background:var(--brand-cyan)"></div><div class="lab"><span class="nm">cyan</span><br>#06B6D4</div></div>
+    <div><div class="sw" style="background:var(--brand-teal)"></div><div class="lab"><span class="nm">teal</span><br>#2EC1AB</div></div>
+    <div><div class="sw" style="background:var(--brand-pink)"></div><div class="lab"><span class="nm">pink</span><br>#DB2777</div></div>
+  </div>
+</body>
+</html>

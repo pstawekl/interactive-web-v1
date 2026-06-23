@@ -1,0 +1,71 @@
+<!-- @dsCard group="Components" viewport="700x560" name="Core — buttons, inputs, badges" subtitle="Button · Badge · Card · Input · Switch · SectionHeading" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; background: var(--background); padding: 28px; font-family: var(--font-body); color: var(--text-body); }
+  .group { margin-bottom: 26px; }
+  .gl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 12px; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .col { display: flex; flex-direction: column; gap: 10px; max-width: 360px; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Button, Badge, Card, Input, Textarea, Switch, SectionHeading } = window.InteractiveDesignSystem_1f5bed;
+  function Demo() {
+    const [on, setOn] = React.useState(true);
+    return (
+      <div>
+        <div className="group">
+          <div className="gl">Button — variants</div>
+          <div className="row">
+            <Button variant="interactive" size="lg">Dowiedz się więcej</Button>
+            <Button variant="default">Sprawdź</Button>
+            <Button variant="outline">Cennik</Button>
+            <Button variant="secondary">Kontakt</Button>
+            <Button variant="ghost">Menu</Button>
+            <Button variant="interactive" disabled>Disabled</Button>
+          </div>
+        </div>
+        <div className="group">
+          <div className="gl">Badge</div>
+          <div className="row">
+            <Badge variant="brand">AI</Badge>
+            <Badge variant="gradient">Nowość</Badge>
+            <Badge variant="success">98% zadowolonych</Badge>
+            <Badge variant="neutral">React</Badge>
+            <Badge variant="outline">TypeScript</Badge>
+          </div>
+        </div>
+        <div className="row" style={{ alignItems: 'stretch' }}>
+          <div className="group" style={{ flex: 1, minWidth: 280 }}>
+            <div className="gl">Input · Textarea · Switch</div>
+            <div className="col">
+              <Input placeholder="jan.kowalski@firma.pl" />
+              <Textarea rows={3} placeholder="Twoja wiadomość…" />
+              <div className="row"><Switch checked={on} onChange={setOn} /><span style={{fontSize:14,color:'var(--text-muted)'}}>Ciemny motyw</span></div>
+            </div>
+          </div>
+          <div className="group" style={{ flex: 1, minWidth: 280 }}>
+            <div className="gl">Card</div>
+            <Card hoverable padding={20}>
+              <h3 style={{ fontSize: 18, marginBottom: 6 }}>Aplikacje internetowe</h3>
+              <p style={{ fontSize: 13, color: 'var(--text-muted)', margin: 0, lineHeight: 1.6 }}>Skrojone pod oczekiwania klienta — od ERP po AI.</p>
+            </Card>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

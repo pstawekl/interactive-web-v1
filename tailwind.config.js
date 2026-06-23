@@ -17,12 +17,40 @@ export default {
   },
   theme: {
     extend: {
+      fontFamily: {
+        display: ['var(--font-display)'],
+        body: ['var(--font-body)'],
+        mono: ['var(--font-mono)'],
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
       },
       colors: {
+        interactive: {
+          violet: 'var(--brand-violet)',
+          purple: 'var(--brand-purple)',
+          indigo: 'var(--brand-indigo)',
+          blue: 'var(--brand-blue)',
+          cyan: 'var(--brand-cyan)',
+          teal: 'var(--brand-teal)',
+          pink: 'var(--brand-pink)',
+          surface: {
+            card: 'var(--surface-card)',
+            elevated: 'var(--surface-elevated)',
+            muted: 'var(--surface-muted)',
+            charcoal: 'var(--surface-charcoal)',
+          },
+          text: {
+            body: 'var(--text-body)',
+            muted: 'var(--text-muted)',
+            subtle: 'var(--text-subtle)',
+          },
+          border: {
+            strong: 'var(--border-strong)',
+          },
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

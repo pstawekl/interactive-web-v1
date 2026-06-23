@@ -1,80 +1,101 @@
-import { motion } from "framer-motion";
-import ScrollDownButton from "./ui/scroll-down-button";
+import { Card, CardContent } from '@/components/ui/card'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { useTranslation } from '@/hooks/useTranslation'
+import { motion } from 'framer-motion'
+import { ArrowUpRight, BarChart3 } from 'lucide-react'
+import ScrollDownButton from './ui/scroll-down-button'
+
+const studies = [
+  {
+    title: 'Arte - sklep z papeterią',
+    summary: 'Budowa sklepu od zera, optymalizacja procesu zamówień i integracja płatności.',
+    results: [
+      { label: 'Czas budowy', value: '1 miesiąc' },
+      { label: 'Zamówień / mies.', value: '300+' },
+    ],
+  },
+  {
+    title: 'Oj Lala - rezerwacje',
+    summary: 'System rezerwacji online z płatnościami i kalendarzem dla usług lokalnych.',
+    results: [
+      { label: 'Wzrost rezerwacji', value: '+300%' },
+      { label: 'Rezerwacji / mies.', value: '100+' },
+    ],
+  },
+  {
+    title: 'Rbiuro.pl - biuro rachunkowe',
+    summary: 'Nowy serwis z formularzami, mocniejszym CTA i optymalizacją SEO.',
+    results: [
+      { label: 'Wzrost zapytań', value: '+250%' },
+      { label: 'Odwiedzeń strony', value: '+180%' },
+    ],
+  },
+]
 
 export function CaseStudies() {
-    const studies = [
-        {
-            title: "Arte - sklep z papeterią",
-            summary: "Budowa sklepu od zera, optymalizacja procesu zamówień i integracja płatności.",
-            results: [
-                { label: "Czas budowy", value: "1 miesiąc" },
-                { label: "Zamówień / mies.", value: "300+" },
-            ],
-        },
-        {
-            title: "Oj Lala — rezerwacje",
-            summary: "System rezerwacji online z płatnościami i kalendarzem.",
-            results: [
-                { label: "Wzrost rezerwacji", value: "+300%" },
-                { label: "Rezerwacji / mies.", value: "100+" },
-            ],
-        },
-        {
-            title: "Rbiuro.pl — biuro rachunkowe",
-            summary: "Nowy serwis z formularzami i CTA, optymalizacja SEO.",
-            results: [
-                { label: "Wzrost zapytań", value: "+250%" },
-                { label: "Odwiedzeń strony", value: "+180%" },
-            ],
-        },
-    ];
+  const { currentLanguage } = useTranslation()
+  const isEnglish = currentLanguage === 'en'
+  const heading = isEnglish ? 'Case studies - project outcomes' : 'Case studies - wyniki naszych projektów'
+  const description = isEnglish
+    ? 'A few examples of projects where technology supported sales, customer service, and lead generation.'
+    : 'Kilka przykładów wdrożeń, w których technologia wspierała sprzedaż, obsługę klienta i pozyskiwanie leadów.'
 
-    return (
-        <section id="caseStudies" className="relative py-16 lg:py-24 w-full">
-            {/* Gradient background matching CallToAction */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 opacity-60 pointer-events-none" />
-            <div className="absolute inset-0 opacity-20 pointer-events-none" style={{
-                backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-                backgroundSize: '40px 40px',
-            }} />
+  return (
+    <section id="caseStudies" className="interactive-section relative w-full overflow-hidden bg-[#09090b]">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(219,39,119,0.14),transparent_30%),radial-gradient(circle_at_82%_74%,rgba(37,99,235,0.14),transparent_34%)]"
+      />
 
-            <div className="container mx-auto px-4 max-w-7xl relative z-10">
-                <motion.h2
-                    className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center text-white"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                >
-                    Case studies — wyniki naszych projektów
-                </motion.h2>
+      <div className="interactive-container relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.55, ease: [0.19, 1, 0.22, 1] }}
+        >
+          <SectionHeading
+            eyebrow={isEnglish ? '// Work' : '// Realizacje'}
+            title={heading}
+            description={description}
+          />
+        </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {studies.map((s, i) => (
-                        <motion.div
-                            key={i}
-                            className="p-6 rounded-2xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-lg"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: i * 0.12, duration: 0.5 }}
-                        >
-                            <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{s.title}</h3>
-                            <p className="text-gray-700 dark:text-gray-300 mb-4">{s.summary}</p>
+        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
+          {studies.map((study, index) => (
+            <motion.div
+              key={study.title}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ delay: index * 0.08, duration: 0.45, ease: [0.19, 1, 0.22, 1] }}
+            >
+              <Card className="group h-full overflow-hidden rounded-3xl border-white/10 bg-[#0e0e11]/86 shadow-[0_20px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl hover:-translate-y-1 hover:border-purple-400/40 hover:shadow-[var(--glow-purple)]">
+                <CardContent className="flex h-full flex-col p-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-full [background:var(--gradient-brand)] text-white shadow-[var(--glow-cta)]">
+                      <BarChart3 className="h-6 w-6" />
+                    </div>
+                    <ArrowUpRight className="h-5 w-5 text-zinc-600 transition-colors group-hover:text-cyan-300" />
+                  </div>
+                  <h3 className="mt-6 font-display text-xl font-bold text-white">{study.title}</h3>
+                  <p className="mt-3 flex-1 font-body text-sm leading-7 text-zinc-400">{study.summary}</p>
 
-                            <div className="flex flex-wrap gap-2">
-                                {s.results.map((r, idx) => (
-                                    <div key={idx} className="px-3 py-1 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-700 rounded-full text-sm font-medium">
-                                        <span className="font-semibold mr-2">{r.value}</span>
-                                        <span className="text-gray-600 dark:text-gray-300">{r.label}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </motion.div>
+                  <div className="mt-6 flex flex-col gap-3">
+                    {study.results.map((result) => (
+                      <div key={result.label} className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                        <span className="interactive-gradient-text font-display text-2xl font-extrabold">{result.value}</span>
+                        <span className="ml-3 font-body text-sm text-zinc-400">{result.label}</span>
+                      </div>
                     ))}
-                </div>
-            </div>
-            <ScrollDownButton servicesInView={true} id="testimonials" />
-        </section>
-    );
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      <ScrollDownButton servicesInView={true} id="testimonials" />
+    </section>
+  )
 }
-
-

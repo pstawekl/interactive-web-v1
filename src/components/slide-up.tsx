@@ -1,8 +1,8 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowUp } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { IoIosArrowUp } from 'react-icons/io';
 
 const SlideUp = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -38,8 +38,8 @@ const SlideUp = () => {
             {isVisible && (
                 <motion.button
                     onClick={scrollToTop}
-                    className="fixed bottom-24 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-2xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 text-white transition-all duration-300 hover:shadow-blue-500/50"
-                    aria-label="Scroll to top"
+                    className="fixed bottom-24 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full [background:var(--gradient-brand)] text-white shadow-[var(--glow-cta)] transition-all duration-300"
+                    aria-label="Przewiń do góry"
                     initial={{ opacity: 0, scale: 0, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0, y: 20 }}
@@ -47,18 +47,11 @@ const SlideUp = () => {
                     whileTap={{ scale: 0.9 }}
                 >
                     <motion.div
-                        animate={{ y: [0, -5, 0] }}
+                        animate={{ y: [0, -4, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
                     >
-                        <IoIosArrowUp className="h-7 w-7" />
+                        <ArrowUp className="h-6 w-6" />
                     </motion.div>
-
-                    {/* Glow effect */}
-                    <motion.div
-                        className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 opacity-50 blur-xl"
-                        animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                    />
                 </motion.button>
             )}
         </AnimatePresence>

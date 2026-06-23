@@ -1,0 +1,98 @@
+/* ===========================================================================
+   Interactive — Color tokens
+   Neutral system is shadcn/ui "slate" (hue 240) as used in the production app.
+   Dark is the DEFAULT theme (the site forces dark on load). Brand identity is
+   carried by the spectral gradient (purple -> blue -> teal, sampled from the
+   wordmark) and the web text gradient (blue -> purple -> pink).
+   =========================================================================== */
+
+:root {
+  /* --- Brand spectrum (sampled from the wordmark) --- */
+  --brand-violet: #af14f7;   /* logo start  */
+  --brand-purple: #9333ea;   /* purple-600  — primary brand hue */
+  --brand-indigo: #6366f1;
+  --brand-blue:   #2563eb;   /* blue-600    */
+  --brand-cyan:   #06b6d4;
+  --brand-teal:   #2ec1ab;   /* logo end    */
+  --brand-pink:   #db2777;   /* pink-600    — accent terminus */
+
+  /* --- Brand gradients --- */
+  /* The wordmark spectrum */
+  --gradient-logo: linear-gradient(90deg, #af14f7 0%, #6366f1 45%, #548ec1 70%, #2ec1ab 100%); /* @kind color */
+  /* Heading / text gradient used across the site */
+  --gradient-brand: linear-gradient(90deg, #2563eb 0%, #9333ea 50%, #db2777 100%); /* @kind color */
+  /* Button / CTA gradient */
+  --gradient-cta: linear-gradient(90deg, #2563eb 0%, #9333ea 100%); /* @kind color */
+  /* Soft tint wash (card hover, section backdrops) */
+  --gradient-wash: linear-gradient(135deg, rgba(37,99,235,0.10) 0%, rgba(147,51,234,0.10) 50%, rgba(219,39,119,0.10) 100%); /* @kind color */
+  /* Stat band — full-saturation hero gradient */
+  --gradient-band: linear-gradient(135deg, #2563eb 0%, #9333ea 50%, #db2777 100%); /* @kind color */
+  /* Pastel / advertising gradient (from the printed business cards): lilac → periwinkle → aqua.
+     Softer, more premium-print feel — use for marketing hero washes, brand cards, pricing accents. */
+  --gradient-pastel: linear-gradient(105deg, #c4a9e8 0%, #9fb8df 52%, #7fd2cf 100%); /* @kind color */
+  --brand-pastel-lilac: #c4a9e8;
+  --brand-pastel-periwinkle: #9fb8df;
+  --brand-pastel-aqua: #7fd2cf;
+  /* Charcoal print surface (business-card stock) */
+  --surface-charcoal: #2b2b2e;
+
+  /* --- Neutral scale (slate / hue 240) --- */
+  --slate-50:  #fafafa;
+  --slate-100: #f4f4f5;
+  --slate-200: #e4e4e7;
+  --slate-300: #d4d4d8;
+  --slate-400: #a1a1aa;
+  --slate-500: #71717a;
+  --slate-600: #52525b;
+  --slate-700: #3f3f46;
+  --slate-800: #27272a;
+  --slate-900: #18181b;
+  --slate-950: #09090b;
+
+  /* --- Semantic (DARK is the default brand theme) --- */
+  --background:        #09090b;  /* 240 10% 3.9% */
+  --foreground:        #fafafa;  /* 0 0% 98%     */
+  --surface-card:      #0e0e11;
+  --surface-elevated:  #18181b;
+  --surface-muted:     #1c1c20;
+  --text-body:         #fafafa;
+  --text-muted:        #a1a1aa;  /* slate-400 */
+  --text-subtle:       #71717a;  /* slate-500 */
+  --border:            #27272a;  /* 240 3.7% 15.9% */
+  --border-strong:     #3f3f46;
+  --input:             #27272a;
+  --ring:              #9333ea;
+
+  --primary:            #9333ea;
+  --primary-foreground: #ffffff;
+  --secondary:          #27272a;
+  --secondary-foreground: #fafafa;
+
+  /* --- Status --- */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger:  #ef4444;
+  --info:    #2563eb;
+
+  /* Price / value accent used on pricing ("od 1699 zł") */
+  --accent-price: #9333ea;
+}
+
+/* --- LIGHT theme (opt-in via .light or [data-theme="light"]) --- */
+.light,
+[data-theme="light"] {
+  --background:        #ffffff;
+  --foreground:        #09090b;
+  --surface-card:      #ffffff;
+  --surface-elevated:  #ffffff;
+  --surface-muted:     #f4f4f5;
+  --text-body:         #18181b;
+  --text-muted:        #52525b;
+  --text-subtle:       #71717a;
+  --border:            #e4e4e7;
+  --border-strong:     #d4d4d8;
+  --input:             #e4e4e7;
+  --ring:              #9333ea;
+  --secondary:          #f4f4f5;
+  --secondary-foreground: #18181b;
+}
