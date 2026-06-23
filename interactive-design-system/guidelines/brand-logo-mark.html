@@ -1,0 +1,22 @@
+<!-- @dsCard group="Brand" viewport="700x220" name="Logo — mark & clearspace" subtitle="Bracket [IN] mark · on dark and light" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 0; font-family: var(--font-body); display:flex; height: 100vh; }
+  .pane { flex: 1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: 14px; }
+  .dark { background: var(--background); }
+  .light { background: #ffffff; }
+  img { height: 96px; width: auto; }
+  .lab { font-family: var(--font-mono); font-size: 11px; }
+  .dark .lab { color: var(--text-muted); }
+  .light .lab { color: #71717a; }
+</style>
+</head>
+<body>
+  <div class="pane dark"><img src="../assets/logo-mark.png" alt="Interactive mark on dark"><span class="lab">on --background</span></div>
+  <div class="pane light"><img src="../assets/logo-mark.png" alt="Interactive mark on light"><span class="lab">on #FFFFFF</span></div>
+</body>
+</html>

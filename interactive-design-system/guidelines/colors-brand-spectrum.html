@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="Brand spectrum" subtitle="Wordmark gradient: violet → indigo → blue → teal" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--background); padding: 24px; font-family: var(--font-body); }
+  .bar { height: 88px; border-radius: var(--radius-xl); background: var(--gradient-logo); box-shadow: var(--shadow-lg); }
+  .stops { display: flex; gap: 8px; margin-top: 16px; }
+  .stop { flex: 1; }
+  .sw { height: 28px; border-radius: var(--radius); border: 1px solid var(--border); }
+  .lab { margin-top: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+  .hex { color: var(--text-body); }
+</style>
+</head>
+<body>
+  <div class="bar"></div>
+  <div class="stops">
+    <div class="stop"><div class="sw" style="background:#af14f7"></div><div class="lab">violet<br><span class="hex">#AF14F7</span></div></div>
+    <div class="stop"><div class="sw" style="background:#6366f1"></div><div class="lab">indigo<br><span class="hex">#6366F1</span></div></div>
+    <div class="stop"><div class="sw" style="background:#548ec1"></div><div class="lab">blue<br><span class="hex">#548EC1</span></div></div>
+    <div class="stop"><div class="sw" style="background:#2ec1ab"></div><div class="lab">teal<br><span class="hex">#2EC1AB</span></div></div>
+  </div>
+</body>
+</html>

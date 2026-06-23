@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { Spinner } from './ui/spinner';
+import { Textarea } from './ui/textarea';
 import emailjs from '@emailjs/browser';
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
-import { Button } from "./ui/button";
-import { Spinner } from "./ui/spinner";
+import { useEffect, useState } from 'react';
 
 export type EmailStatus = {
     isError: boolean;
@@ -15,10 +15,10 @@ export interface EmailFormProps {
     onEmailSent?: () => void;
 }
 
-export default function EmailForm({description, onEmailSent}: EmailFormProps) {
+export default function EmailForm({ description, onEmailSent }: EmailFormProps) {
     const [status, setStatus] = useState<EmailStatus>({ isError: false, message: '' });
     const [isDuringSent, setIsDuringSent] = useState(false);
-    
+
     useEffect(() => {
         formData.message = description;
         formData.email = '';
@@ -40,7 +40,7 @@ export default function EmailForm({description, onEmailSent}: EmailFormProps) {
 
     const executeRecaptcha = async () => {
         try {
-            const token = await (window as any).grecaptcha.execute(import.meta.env.VITE_RECAPTCHA_SITE_KEY, {action: 'submit'});
+            const token = await (window as any).grecaptcha.execute(import.meta.env.VITE_RECAPTCHA_SITE_KEY, { action: 'submit' });
             return token ? true : false; // Jeśli otrzymaliśmy token, uznajemy weryfikację za udaną
         } catch (error) {
             console.error('reCAPTCHA error:', error);
@@ -50,7 +50,7 @@ export default function EmailForm({description, onEmailSent}: EmailFormProps) {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         try {
             const token = await executeRecaptcha();
             if (!token) {
@@ -115,57 +115,62 @@ export default function EmailForm({description, onEmailSent}: EmailFormProps) {
     };
 
     return (
-        <div id="emailForm" className={"w-full flex flex-col justify-center items-center mb-16 px-8 lg:px-0 lg:mb-0"}>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full  max-w-lg">
-                {
-                    status.message.length > 0 && <p className={`${status.isError ? "bh-red-300" : "bg-green-300"}` + " py-3 text-lg border rounded text-center text-white"}>{status.message}</p>
-                }
+        <div id="emailForm" className="w-full flex flex-col justify-center items-center">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full max-w-lg">
+                {status.message.length > 0 && (
+                    <p
+                        role="alert"
+                        className={`${status.isError ? "border-red-500/30 bg-red-500/10 text-red-300" : "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"} border rounded-lg py-3 px-4 text-sm text-center`}
+                    >
+                        {status.message}
+                    </p>
+                )}
                 <div>
-                    <label htmlFor="name" className="block mb-2">Imię i nazwisko</label>
+                    <label htmlFor="email-form-name" className="mb-2 block text-sm font-medium text-zinc-300">Imię i nazwisko</label>
                     <Input
                         type="text"
-                        id="name"
+                        id="email-form-name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full p-2 border rounded"
+                        className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="email" className="block mb-2">Email</label>
+                    <label htmlFor="email-form-email" className="mb-2 block text-sm font-medium text-zinc-300">Email</label>
                     <Input
                         type="email"
-                        id="email"
+                        id="email-form-email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full p-2 border rounded"
+                        className="w-full"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="message" className="block mb-2">Wiadomość</label>
+                    <label htmlFor="email-form-message" className="mb-2 block text-sm font-medium text-zinc-300">Wiadomość</label>
                     <Textarea
-                        id="message"
+                        id="email-form-message"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full p-2 border rounded h-32"
-                        disabled
+                        className="w-full resize-none"
                         required
                     />
                 </div>
-                {
-                    !isDuringSent && <Button variant={'interactive'} className='w-60 self-center' type="submit">
+                {!isDuringSent && (
+                    <Button variant="interactive" className="w-60 self-center" type="submit">
                         Wyślij
                     </Button>
-                }
-                {
-                    isDuringSent && <Spinner />
-                }
+                )}
+                {isDuringSent && (
+                    <div className="flex justify-center">
+                        <Spinner />
+                    </div>
+                )}
             </form>
         </div>
-
     );
 }

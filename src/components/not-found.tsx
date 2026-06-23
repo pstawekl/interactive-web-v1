@@ -6,13 +6,13 @@ export const NotFound = () => {
     const { ts } = useTranslation()
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="text-center">
-                <h1 className="text-9xl font-bold text-gray-800">404</h1>
-                <h2 className="text-4xl font-medium text-gray-600 mt-4">
+        <div className="min-h-screen flex items-center justify-center bg-[#09090b]">
+            <div className="text-center px-4">
+                <h1 className="text-9xl font-bold interactive-gradient-text">404</h1>
+                <h2 className="text-4xl font-medium text-zinc-200 mt-4">
                     {ts('pageNotFound')}
                 </h2>
-                <p className="text-gray-500 mt-4 mb-8">
+                <p className="text-zinc-400 mt-4 mb-8">
                     {ts('pageNotFoundDescription')}
                 </p>
                 <Link

@@ -1,138 +1,139 @@
-import { cn } from '@/lib/utils';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { Button } from './ui/button';
+import { cn } from '@/lib/utils'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect, useMemo, useState } from 'react'
+import { Button } from './ui/button'
 
 interface MapItem {
-    id: string;
-    name: string;
-    onlyMobile?: boolean;
+  id: string
+  name: string
+  onlyMobile?: boolean
 }
 
 interface ViewMapProps {
-    items: MapItem[];
+  items: MapItem[]
 }
 
 export const ViewMap: React.FC<ViewMapProps> = ({ items }) => {
-    const [activeId, setActiveId] = useState<string>('');
+  const [activeId, setActiveId] = useState<string>('')
+  const [availableIds, setAvailableIds] = useState<Set<string>>(new Set())
 
-    const handleDotClick = (id: string) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            setActiveId(id);
+  const visibleItems = useMemo(
+    () => items.filter((item) => availableIds.has(item.id)),
+    [items, availableIds]
+  )
+
+  const handleDotClick = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      setActiveId(id)
+    }
+  }
+
+  useEffect(() => {
+    const refreshAvailableItems = () => {
+      setAvailableIds(new Set(items.filter((item) => document.getElementById(item.id)).map((item) => item.id)))
+    }
+
+    refreshAvailableItems()
+    const timeout = window.setTimeout(refreshAvailableItems, 600)
+
+    return () => window.clearTimeout(timeout)
+  }, [items])
+
+  useEffect(() => {
+    if (visibleItems.length === 0) return
+
+    const handleScroll = () => {
+      const activationLine = window.innerHeight * 0.35
+      let current = visibleItems[0]?.id ?? ''
+
+      for (const item of visibleItems) {
+        const element = document.getElementById(item.id)
+        if (!element) continue
+
+        const rect = element.getBoundingClientRect()
+        if (rect.top <= activationLine) {
+          current = item.id
         }
-    };
+      }
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const viewportHeight = window.innerHeight;
-            const tolerance = viewportHeight * 0.15; // 15% tolerancji
+      setActiveId(current)
+    }
 
-            for (const item of items) {
-                const element = document.getElementById(item.id);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    const elementCenter = rect.top + rect.height / 2;
-                    const viewportCenter = viewportHeight / 2;
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll, { passive: true })
 
-                    if (Math.abs(elementCenter - viewportCenter) < tolerance) {
-                        setActiveId(item.id);
-                        break;
-                    }
-                }
-            }
-        };
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
+  }, [visibleItems])
 
-        // Sprawdź aktywny element przy pierwszym renderowaniu
-        handleScroll();
+  if (visibleItems.length === 0) return null
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [items]);
+  return (
+    <motion.nav
+      className={cn(
+        'fixed left-4 top-1/2 z-50 hidden flex-col items-center gap-4 lg:flex',
+        'rounded-full border border-white/10 bg-[#09090b]/72 px-3 py-4 shadow-[0_18px_70px_rgba(8,8,12,0.5)] backdrop-blur-xl'
+      )}
+      initial={{ opacity: 0, x: -16, y: '-50%' }}
+      animate={{ opacity: 1, x: 0, y: '-50%' }}
+      transition={{ delay: 0.35, duration: 0.35 }}
+      aria-label="Mapa sekcji"
+    >
+      <motion.div
+        className="absolute bottom-6 top-6 w-px [background:linear-gradient(180deg,rgba(37,99,235,0.2),rgba(147,51,234,0.6),rgba(219,39,119,0.2))]"
+        initial={{ scaleY: 0, opacity: 0 }}
+        animate={{ scaleY: 1, opacity: 1 }}
+        transition={{ delay: 0.45, duration: 0.5 }}
+      />
 
-    return (
-        <motion.div
-            className={cn(
-                // Mobile layout; desktop attached to left
-                "fixed md:left-5 lg:left-0 z-50",
-                "top-6 inset-x-0 mx-auto w-max md:inset-x-auto md:mx-0 md:w-auto md:top-1/2 md:-translate-x-0 md:-translate-y-1/2 lg:top-1/2 md:left-5 lg:left-5 lg:translate-none",
-                "flex flex-row md:flex-col gap-4"
-            )}
-            initial={{ opacity: 0, scale: 0.8 }}
+      {visibleItems.map((item, index) => {
+        const isActive = activeId === item.id
+
+        return (
+          <motion.div
+            key={item.id}
+            className="group relative z-10"
+            initial={{ opacity: 0, scale: 0.75 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-        >
-            {/* Connection line for desktop */}
-            <motion.div
-                className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500"
-                style={{ transform: 'translateX(-50%)' }}
-                initial={{ scaleY: 0, opacity: 0 }}
-                animate={{ scaleY: 1, opacity: 1 }}
-                transition={{ delay: 0.7, duration: 0.8 }}
+            transition={{ delay: 0.45 + index * 0.05, duration: 0.22 }}
+          >
+            <Button
+              onClick={() => handleDotClick(item.id)}
+              title={item.name}
+              aria-label={`Przejdź do sekcji ${item.name}`}
+              variant="ghost"
+              className={cn(
+                'relative h-4 w-4 min-w-0 rounded-full border p-0 transition-all duration-300',
+                isActive
+                  ? 'scale-125 border-transparent [background:var(--gradient-cta)] shadow-[0_0_24px_rgba(147,51,234,0.75)]'
+                  : 'border-white/25 bg-[#09090b] hover:border-purple-300/70 hover:bg-white/[0.06]',
+                item.onlyMobile && 'lg:hidden'
+              )}
             >
-                {/* <motion.div
-                    className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent via-white/50 to-transparent"
-                    animate={{ y: [0, items.length * 60, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                /> */}
-            </motion.div>
+              <AnimatePresence>
+                {isActive && (
+                  <motion.span
+                    className="absolute inset-0 rounded-full [background:var(--gradient-cta)]"
+                    initial={{ scale: 1, opacity: 0.35 }}
+                    animate={{ scale: 2.25, opacity: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.1, repeat: Infinity, ease: 'easeOut' }}
+                  />
+                )}
+              </AnimatePresence>
+            </Button>
 
-            {items.map((item, index) => (
-                <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                    transition={{ delay: 0.6 + index * 0.1, type: "spring", stiffness: 200 }}
-                    whileHover={{ scale: 1.4, rotate: [0, -10, 10, 0], y: -5 }}
-                    whileTap={{ scale: 0.9 }}
-                >
-                    <Button
-                        onClick={() => handleDotClick(item.id)}
-                        title={item.name}
-                        aria-label={`Przejdź do sekcji ${item.name}`}
-                        variant="ghost"
-                        className={cn(
-                            'relative w-3 h-3 md:w-4 md:h-4 p-0 min-w-0 rounded-full border-2 transition-all duration-300',
-                            activeId === item.id
-                                ? 'border-blue-500 bg-blue-500 shadow-lg shadow-blue-500/50'
-                                : 'border-neutral-400 bg-transparent hover:border-blue-400 hover:bg-blue-400/20',
-                            item.onlyMobile && 'lg:hidden'
-                        )}
-                    >
-                        <AnimatePresence>
-                            {activeId === item.id && (
-                                <>
-                                    <motion.div
-                                        className="absolute inset-0 rounded-full bg-blue-500"
-                                        initial={{ scale: 0, opacity: 0 }}
-                                        animate={{ scale: 1.5, opacity: 0.3 }}
-                                        exit={{ scale: 2, opacity: 0 }}
-                                        transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
-                                    />
-                                    <motion.div
-                                        className="absolute inset-0 rounded-full bg-purple-500"
-                                        initial={{ scale: 0, opacity: 0 }}
-                                        animate={{ scale: 2, opacity: 0.2 }}
-                                        exit={{ scale: 2.5, opacity: 0 }}
-                                        transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse", delay: 0.2 }}
-                                    />
-                                </>
-                            )}
-                        </AnimatePresence>
-
-                        {/* Tooltip */}
-                        <motion.div
-                            className="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-gray-900 dark:bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"
-                            initial={{ opacity: 0, x: -10 }}
-                            whileHover={{ opacity: 1, x: 0 }}
-                        >
-                            {item.name}
-                            <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900 dark:border-r-gray-800" />
-                        </motion.div>
-                    </Button>
-                </motion.div>
-            ))}
-        </motion.div>
-    );
-};
+            <div className="pointer-events-none absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded-xl border border-white/10 bg-[#09090b]/92 px-3 py-1.5 font-body text-xs font-semibold text-zinc-200 opacity-0 shadow-[0_14px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-opacity group-hover:opacity-100">
+              {item.name}
+            </div>
+          </motion.div>
+        )
+      })}
+    </motion.nav>
+  )
+}

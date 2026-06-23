@@ -1,47 +1,37 @@
-import { useLanguage } from '@/contexts/LanguageContext';
-import { useTranslation } from '@/hooks/useTranslation';
-import { useState } from 'react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+import { useLanguage } from '@/contexts/LanguageContext'
+import { cn } from '@/lib/utils'
 
-type Language = 'pl' | 'en';
+type Language = 'pl' | 'en'
 
 export default function LanguagePicker() {
-    const { currentLanguage, setLanguage } = useLanguage();
-    const { ts } = useTranslation();
-    const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const { currentLanguage, setLanguage } = useLanguage()
 
-    const handleLanguageChange = (newLanguage: string) => {
-        setLanguage(newLanguage as Language);
-        document.documentElement.lang = newLanguage;
-    };
+  const handleLanguageChange = (language: Language) => {
+    setLanguage(language)
+    document.documentElement.lang = language
+  }
 
-    return (
-        <div className="h-auto relative group">
-            <TooltipProvider>
-                <Tooltip open={isSelectOpen ? false : undefined}>
-                    <TooltipTrigger asChild>
-                        <div>
-                            <Select
-                                value={currentLanguage}
-                                onValueChange={handleLanguageChange}
-                                onOpenChange={setIsSelectOpen}
-                            >
-                                <SelectTrigger className="w-min h-min bg-white/10 text-black-900 border-white/20">
-                                    <SelectValue placeholder="Select a language" />
-                                </SelectTrigger>
-                                <SelectContent className='z-50 bg-black/10 border-white/20 curosor-pointer w-min'>
-                                    <SelectItem className='cursor-pointer hover:bg-white/30 text-black-900' value="pl">PL</SelectItem>
-                                    <SelectItem className='cursor-pointer hover:bg-white/30 text-black-900' value="en">ENG</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                        <p>{ts('pickLanguage')}</p>
-                    </TooltipContent>
-                </Tooltip>
-            </TooltipProvider>
-        </div>
-    );
+  return (
+    <div
+      className="inline-flex h-9 items-center gap-1 rounded-full border border-zinc-200/80 bg-white/90 p-1 shadow-[0_10px_28px_rgba(0,0,0,0.12)] dark:border-white/10 dark:bg-[#15151a] dark:shadow-[0_10px_28px_rgba(0,0,0,0.28)]"
+      aria-label="Wybór języka"
+    >
+      {(['pl', 'en'] as const).map((language) => (
+        <button
+          key={language}
+          type="button"
+          onClick={() => handleLanguageChange(language)}
+          className={cn(
+            'interactive-focus h-7 min-w-9 rounded-full px-3 font-mono text-[11px] font-bold uppercase tracking-normal transition-colors',
+            currentLanguage === language
+              ? '[background:var(--gradient-cta)] text-white shadow-[0_8px_18px_-10px_rgba(147,51,234,0.9)]'
+              : 'text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white'
+          )}
+          aria-pressed={currentLanguage === language}
+        >
+          {language === 'pl' ? 'PL' : 'EN'}
+        </button>
+      ))}
+    </div>
+  )
 }

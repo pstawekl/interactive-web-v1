@@ -1,191 +1,142 @@
-import { Button } from '@/components/ui/button';
-import { useTranslation } from '@/hooks/useTranslation';
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import Logo from '../assets/logo-horizontal.png';
+import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/hooks/useTranslation'
+import { motion } from 'framer-motion'
+import { ArrowDown } from 'lucide-react'
+
+const copy = {
+  pl: {
+    eyebrow: '// SOFTWARE HOUSE • OD 2017',
+    title: 'Rozwiązania IT, które napędzą Twój sukces',
+    subtitle:
+      'Od wizji po wdrożenie - profesjonalne usługi programistyczne: strony, sklepy, aplikacje webowe i rozwiązania AI.',
+    primaryCta: 'Dowiedz się więcej',
+    secondaryCta: 'Sprawdź projekty',
+    badges: ['React', 'TypeScript', 'AI', 'ERP'],
+    uptime: '99.9% uptime',
+  },
+  en: {
+    eyebrow: '// SOFTWARE HOUSE • SINCE 2017',
+    title: 'IT solutions that drive your growth',
+    subtitle:
+      'From vision to deployment - professional software services: websites, stores, web applications and AI solutions.',
+    primaryCta: 'Learn more',
+    secondaryCta: 'See projects',
+    badges: ['React', 'TypeScript', 'AI', 'ERP'],
+    uptime: '99.9% uptime',
+  },
+}
 
 export function Hero() {
-    const { t, ts } = useTranslation();
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const { currentLanguage } = useTranslation()
+  const heroCopy = currentLanguage === 'en' ? copy.en : copy.pl
 
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-        };
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []);
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
-    return (
-        <section
-            id="banner"
-            className="relative hero overflow-hidden text-white flex flex-col lg:flex-row gap-8 items-center justify-center min-h-[70vh] lg:min-h-screen p-5 w-full"
+  return (
+    <section
+      id="banner"
+      className="relative flex min-h-[684px] w-full items-start justify-center overflow-hidden border-b border-zinc-200/80 bg-[#f8fafc] px-4 pb-24 pt-[116px] text-zinc-950 sm:px-6 lg:px-8 dark:border-white/[0.06] dark:bg-[#050506] dark:text-white"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_23%_20%,rgba(147,51,234,0.14),transparent_34%),radial-gradient(circle_at_74%_23%,rgba(37,99,235,0.12),transparent_38%),radial-gradient(circle_at_58%_92%,rgba(46,193,171,0.12),transparent_44%),linear-gradient(180deg,#ffffff_0%,#f8fafc_48%,#f1f5f9_100%)] dark:hidden"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(circle_at_23%_20%,rgba(147,51,234,0.26),transparent_35%),radial-gradient(circle_at_74%_23%,rgba(37,99,235,0.24),transparent_38%),radial-gradient(circle_at_58%_92%,rgba(46,193,171,0.16),transparent_44%),linear-gradient(180deg,#050506_0%,#08101f_45%,#061a18_100%)] dark:block"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.035] dark:opacity-[0.045]"
+        style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(24,24,27,0.9) 1px, transparent 0)',
+          backgroundSize: '34px 34px',
+        }}
+      />
+
+      <div className="relative z-10 mx-auto flex w-full max-w-[860px] flex-col items-center text-center">
+        <motion.p
+          className="font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-zinc-500 sm:text-xs"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
         >
-            {/* Static gradient background */}
-            <div className="absolute inset-0 opacity-30 dark:opacity-40" />
-            {/* bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600  */}
+          {heroCopy.eyebrow}
+        </motion.p>
 
-            {/* Secondary gradient with subtle mouse movement */}
-            <motion.div
-                className="absolute inset-0opacity-20 dark:opacity-30 pointer-events-none" // bg-gradient-to-tl from-black-500 via-gray-500 to-black-600 
-                transition={{ type: "spring", stiffness: 50, damping: 20 }}
-            />
+        <motion.h1
+          className="mt-7 font-display text-[clamp(3.1rem,7vw,4.85rem)] font-extrabold leading-[0.98] tracking-tight"
+          style={{
+            background: 'linear-gradient(90deg, #2563eb 0%, #9333ea 50%, #db2777 100%)',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            color: 'transparent',
+          }}
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.08, duration: 0.55, ease: [0.19, 1, 0.22, 1] }}
+        >
+          {heroCopy.title}
+        </motion.h1>
 
-            {/* Simple animated orbs */}
-            {[
-                { size: 250, x: 10, y: 20, color: 'black' },
-                { size: 300, x: 80, y: 10, color: 'black' },
-                { size: 200, x: 20, y: 70, color: 'black' },
-            ].map((orb, i) => (
-                <motion.div
-                    key={`orb-${i}`}
-                    className="absolute rounded-full blur-3xl opacity-15 pointer-events-none"
-                    style={{
-                        width: orb.size,
-                        height: orb.size,
-                        left: `${orb.x}%`,
-                        top: `${orb.y}%`,
-                        background: 'black'
-                        // orb.color === 'black'
-                        //     ? 'radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent)'
-                        //     : 'radial-gradient(circle, rgba(147, 51, 234, 0.4), transparent)',
-                    }}
-                    animate={{
-                        scale: [1, 1.1, 1],
-                        opacity: [0.15, 0.25, 0.15],
-                    }}
-                    transition={{
-                        duration: 8 + i * 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                    }}
-                />
-            ))}
+        <motion.p
+          className="mt-7 max-w-[690px] font-body text-xl leading-[1.45] text-zinc-600 sm:text-[22px] dark:text-zinc-400"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.16, duration: 0.55, ease: [0.19, 1, 0.22, 1] }}
+        >
+          {heroCopy.subtitle}
+        </motion.p>
 
-            {/* Simple particles effect */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {[...Array(10)].map((_, i) => {
-                    const positions = [
-                        { x: 10, y: 20 }, { x: 80, y: 10 }, { x: 20, y: 70 },
-                        { x: 70, y: 60 }, { x: 50, y: 30 }, { x: 90, y: 80 },
-                        { x: 30, y: 50 }, { x: 60, y: 40 }, { x: 15, y: 90 },
-                        { x: 85, y: 25 }
-                    ];
-                    const pos = positions[i] || { x: 50, y: 50 };
-                    return (
-                        <motion.div
-                            key={i}
-                            className="absolute w-2 h-2 bg-white rounded-full opacity-30"
-                            style={{
-                                left: `${pos.x}%`,
-                                top: `${pos.y}%`,
-                            }}
-                            animate={{
-                                opacity: [0.2, 0.5, 0.2],
-                                scale: [1, 1.5, 1],
-                            }}
-                            transition={{
-                                duration: 3 + i * 0.5,
-                                repeat: Infinity,
-                                delay: i * 0.3,
-                            }}
-                        />
-                    );
-                })}
-            </div>
+        <motion.div
+          className="mt-9 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.24, duration: 0.5 }}
+        >
+          <Button
+            variant="interactive"
+            size="lg"
+            className="h-[52px] min-w-[232px] rounded-xl px-8 text-base"
+            onClick={() => scrollTo('offer')}
+            aria-label={heroCopy.primaryCta}
+          >
+            {heroCopy.primaryCta}
+            <ArrowDown className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            className="h-[52px] min-w-[196px] rounded-xl border-zinc-300 bg-white/70 px-8 text-base text-zinc-950 hover:border-purple-400/40 hover:bg-zinc-50 dark:border-white/15 dark:bg-transparent dark:text-white dark:hover:border-cyan-300/25 dark:hover:bg-white/[0.04]"
+            onClick={() => scrollTo('caseStudies')}
+            aria-label={heroCopy.secondaryCta}
+          >
+            {heroCopy.secondaryCta}
+          </Button>
+        </motion.div>
 
-            {/* Static grid pattern */}
-            <div
-                className="absolute inset-0 opacity-5 pointer-events-none"
-                style={{
-                    background: 'black',
-                    // backgroundImage: `
-                    // linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                    // linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
-                    // `,
-                    backgroundSize: '50px 50px',
-                }}
-            />
-
-            <div className='relative select-none text-center w-full max-w-[90vw] sm:max-w-[500px] lg:max-w-[1000px] flex flex-col justify-center items-center gap-5 z-10 px-4'>
-                <motion.img
-                    src={Logo}
-                    draggable="false"
-                    className='mb-5 w-full max-w-[300px] lg:max-w-[500px] h-auto drop-shadow-2xl'
-                    alt="Interactive Logo horizontal"
-                    width={500}
-                    height={150}
-                    loading="eager"
-                    fetchPriority="high"
-                    initial={{ scale: 0.95, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.1, duration: 0.5 }}
-                    whileHover={{ scale: 1.05 }}
-                />
-
-                <motion.h1
-                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-black dark:text-white font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent break-words drop-shadow-lg"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.5 }}
-                    whileHover={{ scale: 1.02 }}
-                >
-                    {ts('indexBannerTitle')}
-                </motion.h1>
-
-                <motion.p
-                    className="text-base sm:text-lg md:text-xl lg:text-2xl text-black dark:text-white font-light break-words drop-shadow-md"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.5 }}
-                    whileHover={{ scale: 1.02 }}
-                >
-                    {ts('indexBannerSubtitle')}
-                </motion.p>
-
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4, duration: 0.5 }}
-                    whileHover={{ scale: 1.05, y: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    <Button
-                        variant={'interactive'}
-                        className="mt-6 relative overflow-hidden group"
-                        onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth", block: 'start' })}
-                        aria-label={ts('learnMore')}
-                    >
-                        <span className="relative z-10">{ts('learnMore')}</span>
-                        <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity"
-                            initial={false}
-                        />
-                    </Button>
-                </motion.div>
-            </div>
-
-            {/* Scroll indicator */}
-            <motion.div
-                className="absolute bottom-[15%] left-1/2 transform -translate-x-1/2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.2 }}
+        <motion.div
+          className="mt-10 flex flex-wrap items-center justify-center gap-3"
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.32, duration: 0.45 }}
+        >
+          {heroCopy.badges.map((item) => (
+            <span
+              key={item}
+              className="rounded-full border border-purple-400/30 bg-purple-500/10 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.09em] text-purple-600 dark:text-purple-300"
             >
-                <motion.div
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="w-6 h-10 border-2 border-gray-600 dark:border-gray-400 rounded-full flex justify-center"
-                >
-                    <motion.div
-                        animate={{ y: [0, 12, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        className="w-1 h-3 bg-gray-600 dark:bg-gray-400 rounded-full mt-2"
-                    />
-                </motion.div>
-            </motion.div>
-        </section>
-    );
+              {item}
+            </span>
+          ))}
+          <span className="rounded-full border border-emerald-400/30 bg-emerald-500/12 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.09em] text-emerald-600 dark:border-emerald-400/25 dark:text-emerald-300">
+            {heroCopy.uptime}
+          </span>
+        </motion.div>
+      </div>
+    </section>
+  )
 }

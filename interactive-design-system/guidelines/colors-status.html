@@ -1,0 +1,22 @@
+<!-- @dsCard group="Colors" viewport="700x130" name="Status colors" subtitle="Success, warning, danger, info" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--background); padding: 24px; font-family: var(--font-body); }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .sw { height: 48px; border-radius: var(--radius-lg); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:600; font-size:13px; }
+  .lab { margin-top: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div><div class="sw" style="background:var(--success)">Success</div><div class="lab">#22C55E</div></div>
+    <div><div class="sw" style="background:var(--warning)">Warning</div><div class="lab">#F59E0B</div></div>
+    <div><div class="sw" style="background:var(--danger)">Danger</div><div class="lab">#EF4444</div></div>
+    <div><div class="sw" style="background:var(--info)">Info</div><div class="lab">#2563EB</div></div>
+  </div>
+</body>
+</html>

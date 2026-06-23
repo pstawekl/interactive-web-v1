@@ -1,0 +1,48 @@
+<!-- @dsCard group="Website" viewport="1280x900" name="E-commerce — Sklepy" subtitle="Store services + 3 package tiers + payment tech" -->
+<!-- @startingPoint section="Website" subtitle="E-commerce page — services, store packages, tech badges" viewport="1280x900" -->
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive — Sklepy internetowe</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--background); color: var(--text-body); font-family: var(--font-body); }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--gradient-cta); border-radius: 5px; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script src="./data.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="./sections.jsx" data-presets="react"></script>
+<script type="text/babel" src="./pages.jsx" data-presets="react"></script>
+<script type="text/babel" src="./pages2.jsx" data-presets="react"></script>
+<script type="text/babel" data-presets="react">
+  function App() {
+    const [lang, setLang] = React.useState('pl');
+    React.useEffect(() => { if (window.lucide) window.lucide.createIcons(); });
+    return (
+      <React.Fragment>
+        <PageNav lang={lang} setLang={setLang} active="ecommerce" />
+        <EcommercePage lang={lang} />
+        <Footer t={window.IN_DATA[lang]} lang={lang} />
+      </React.Fragment>
+    );
+  }
+  function mount() {
+    if (!window.EcommercePage || !window.Footer || !window.PageNav) { setTimeout(mount, 40); return; }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  }
+  mount();
+</script>
+</body>
+</html>

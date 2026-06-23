@@ -1,0 +1,31 @@
+<!-- @dsCard group="Colors" viewport="700x190" name="Dark surfaces (default)" subtitle="Default theme — background, cards, borders, text" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--background); padding: 24px; font-family: var(--font-body); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .tile { border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 14px; height: 86px; display:flex; flex-direction:column; justify-content:space-between; }
+  .name { font-size: 12px; font-weight: 600; color: var(--text-body); }
+  .var { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); }
+  .txtrow { display:flex; gap:16px; margin-top:16px; align-items:baseline; }
+  .txtrow span { font-size: 14px; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="tile" style="background:var(--background)"><span class="name">background</span><span class="var">#09090B</span></div>
+    <div class="tile" style="background:var(--surface-card)"><span class="name">surface-card</span><span class="var">#0E0E11</span></div>
+    <div class="tile" style="background:var(--surface-elevated)"><span class="name">surface-elevated</span><span class="var">#18181B</span></div>
+    <div class="tile" style="background:var(--surface-muted)"><span class="name">surface-muted</span><span class="var">#1C1C20</span></div>
+  </div>
+  <div class="txtrow">
+    <span style="color:var(--text-body)">text-body</span>
+    <span style="color:var(--text-muted)">text-muted</span>
+    <span style="color:var(--text-subtle)">text-subtle</span>
+    <span style="color:var(--border-strong); border:1px solid var(--border); padding:2px 8px; border-radius:6px;">border</span>
+  </div>
+</body>
+</html>

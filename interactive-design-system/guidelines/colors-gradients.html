@@ -1,0 +1,23 @@
+<!-- @dsCard group="Colors" viewport="700x230" name="Gradients" subtitle="Logo · brand text · CTA · wash" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--background); padding: 24px; font-family: var(--font-body); }
+  .stack { display:flex; flex-direction:column; gap: 12px; }
+  .g { height: 40px; border-radius: var(--radius-lg); display:flex; align-items:center; padding: 0 16px; color:#fff; font-weight:600; font-size:13px; text-shadow:0 1px 2px rgba(0,0,0,.3); }
+  .meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-left:auto; text-shadow:none; }
+  .wash { border:1px solid var(--border); color:var(--text-body); text-shadow:none; }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div class="g" style="background:var(--gradient-logo)">--gradient-logo<span class="meta">violet→indigo→blue→teal</span></div>
+    <div class="g" style="background:var(--gradient-brand)">--gradient-brand<span class="meta">blue→purple→pink</span></div>
+    <div class="g" style="background:var(--gradient-cta)">--gradient-cta<span class="meta">blue→purple</span></div>
+    <div class="g wash" style="background:var(--gradient-wash)">--gradient-wash<span class="meta">10% tint · card hover</span></div>
+  </div>
+</body>
+</html>

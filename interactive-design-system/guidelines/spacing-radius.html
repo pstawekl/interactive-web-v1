@@ -1,0 +1,25 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Radius scale" subtitle="shadcn base 8px · cards 24px · pills full" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--background); padding: 24px; font-family: var(--font-body); }
+  .row { display:flex; gap: 18px; align-items:flex-end; }
+  .item { text-align:center; }
+  .box { width: 76px; height: 76px; background: var(--surface-elevated); border:1px solid var(--border-strong); border-top:3px solid transparent; border-image: var(--gradient-cta) 1; }
+  .lab { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-top: 8px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="border-radius:var(--radius-sm)"></div><div class="lab">sm · 4</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius)"></div><div class="lab">base · 8</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-lg)"></div><div class="lab">lg · 12</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-xl)"></div><div class="lab">xl · 16</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-2xl)"></div><div class="lab">2xl · 24</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-full)"></div><div class="lab">full</div></div>
+  </div>
+</body>
+</html>
